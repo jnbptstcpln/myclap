@@ -1,0 +1,15 @@
+{
+  "name": "beardedbyte/plexus",
+  "author": "Jean-Baptiste Caplan",
+  "description": "Micro Framework to build web services.",
+  "require": {
+    "php": "^7.1",
+    "symfony/yaml": "^4.2"
+  },
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Plexus\\": "src/"
+    }
+  }
+}

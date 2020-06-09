@@ -1,0 +1,9 @@
+{
+    "require": {
+        "twig/twig": "^2.6",
+        "symfony/yaml": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {"myCLAP\\": "src/", "Plexus\\": "vendor/beardedbyte/plexus/src/"}
+    }
+}
