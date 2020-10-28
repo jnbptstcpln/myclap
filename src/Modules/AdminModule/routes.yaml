@@ -1,0 +1,43 @@
+
+admin-index:
+  method: 'GET'
+  path: '/administration'
+  action: 'AdminModule:Index:index'
+
+admin-permission-index:
+  method: 'GET'
+  path: '/administration/permissions'
+  action: 'AdminModule:Permission:index'
+admin-permission-identifier:
+  method: 'GET'
+  path: '/administration/permissions/p/[*:identifier]'
+  action: 'AdminModule:Permission:identifier'
+admin-permission-username:
+  method: 'GET'
+  path: '/administration/permissions/u/[*:username]'
+  action: 'AdminModule:Permission:username'
+
+admin-permissionapi-searchuser1:
+  method: 'GET'
+  path: '/administration/permissions/api/utilisateurs1'
+  action: 'AdminModule:PermissionAPI:search_user1'
+admin-permissionapi-searchuser2:
+  method: 'GET'
+  path: '/administration/permissions/api/utilisateurs2'
+  action: 'AdminModule:PermissionAPI:search_user2'
+
+admin-permissionapi-getpermissions:
+  method: 'GET'
+  path: '/administration/permissions/api/list'
+  action: 'AdminModule:PermissionAPI:get_permissions'
+
+
+
+admin-permissionapi-add:
+  method: 'POST'
+  path: '/administration/permissions/api/add'
+  action: 'AdminModule:PermissionAPI:add'
+admin-permissionapi-remove:
+  method: 'POST'
+  path: '/administration/permissions/api/remove'
+  action: 'AdminModule:PermissionAPI:remove'

@@ -1,0 +1,60 @@
+
+home-index:
+  method: 'GET'
+  path: '/'
+  action: 'HomeModule:Index:index'
+
+home-playlist:
+  method: 'GET'
+  path: '/playlists'
+  action: 'HomeModule:Playlist:index'
+home-playlist-details:
+  method: 'GET'
+  path: '/playlists/[*:slug]'
+  action: 'HomeModule:Playlist:details'
+
+home-category:
+  method: 'GET'
+  path: '/categories'
+  action: 'HomeModule:Category:index'
+home-category-details:
+  method: 'GET'
+  path: '/categories/[*:slug]'
+  action: 'HomeModule:Category:details'
+
+home-year:
+  method: 'GET'
+  path: '/annees'
+  action: 'HomeModule:Year:index'
+home-year-details:
+  method: 'GET'
+  path: '/annees/[*:slug]'
+  action: 'HomeModule:Year:details'
+
+home-reaction:
+  method: 'GET'
+  path: '/favoris'
+  action: 'HomeModule:Reaction:index'
+
+listapi-recent-video:
+  method: 'GET'
+  path: '/listapi/recent/videos'
+  action: 'HomeModule:ListAPI:recent_videos_html'
+listapi-category-video:
+  method: 'GET'
+  path: '/listapi/categories/[*:category_slug]/videos'
+  action: 'HomeModule:ListAPI:category_videos_html'
+
+listapi-playlistclassic-playlist:
+  method: 'GET'
+  path: '/listapi/playlists/classic'
+  action: 'HomeModule:ListAPI:classic_playlists_html'
+listapi-playlistbroadcast-playlist:
+  method: 'GET'
+  path: '/listapi/playlists/broadcast'
+  action: 'HomeModule:ListAPI:broadcast_playlists_html'
+
+listapi-userfavorite-videos:
+  method: 'GET'
+  path: '/listapi/favorites/videos'
+  action: 'HomeModule:ListAPI:user_favorite_videos_html'

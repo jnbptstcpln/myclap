@@ -1,0 +1,57 @@
+{% extends '/layout_manager.html.twig' %}
+
+{% block page_title %}
+    myCLAP Manager - Catégories
+{% endblock %}
+
+{% block content %}
+
+    <div class="section-header">
+        <div>
+            <h2>Catégories</h2>
+        </div>
+        <div class="link">
+            <a class="button" href="{{ route_url('manager-category-create') }}"><i class="fas fa-plus"></i> Nouvelle catégorie</a>
+        </div>
+    </div>
+
+    {% include '/flash/success.html.twig' %}
+
+    <table class="fullwidth">
+        <thead>
+        <tr>
+            <th class="pl-10">Nom</th>
+            <th class="">Description</th>
+            <th class="text-center">Créée le</th>
+            <th class="text-center">Créée par</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for category in categories %}
+            <tr>
+                <td class="w-300">
+                    <div class="layout category">
+                        <div class="info-action">
+                            <h2>{{ category.label }}</h2>
+                        </div>
+                    </div>
+                </td>
+                <td class="max-w-450 text-muted">
+                    {{ category.description }}
+                </td>
+                <td class="text-center">
+                    {{ category.created_on|date('d/m/Y') }}
+                </td>
+                <td class="text-center">
+                    {{ category.created_by }}
+                </td>
+                <td class="w-150">
+                    <a class="button block" href="{{ route_url('manager-category-edit', category.slug) }}"><i class="fas fa-pencil"></i> Modifier</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

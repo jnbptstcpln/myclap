@@ -1,0 +1,80 @@
+.playlist-builder {
+
+}
+.playlist-builder .header {
+    position: relative;
+    text-align: center;
+    margin: 25px auto;
+}
+.playlist-builder .header h2 {
+    border-bottom: 2px solid #b30000;
+    color: rgba(255,255,255,0.75);
+    font-size: 1.75em;
+    margin: 0 auto;
+    max-width: 350px;
+    padding: 0 5px;
+    text-transform: uppercase;
+    width: 100%;
+}
+.playlist-builder .header .button {
+    display: block;
+    font-size: 9px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px auto 0 auto;
+    max-width: 300px;
+    padding: 0 5px;
+}
+.playlist-builder > div {
+    display: none;
+}
+.playlist-builder[data-view="list"] > .list {
+    display: block;
+}
+.playlist-builder[data-view="search"] > .search {
+    display: unset;
+}
+.playlist-builder > .list .video-container {
+    margin: 20px auto;
+}
+.playlist-builder > .list .add > a {
+    cursor: pointer;
+    margin: auto;
+    max-width: 500px;
+}
+.playlist-builder .video .actions {
+    align-items: center;
+    display: flex;
+    height: 75px;
+    font-size: 1.25em;
+    padding: 0 15px;
+}
+.playlist-builder .video .actions a {
+    color: #cdcdcd;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 150ms;
+    width: 30px;
+    margin: 0 10px;
+}
+.playlist-builder .video .actions a:hover {
+    color: white;
+}
+
+.playlist-builder > .search input {
+    margin-bottom: 20px;
+}
+.playlist-builder > .search .row {
+    max-width: 750px;
+}
+.playlist-builder > .search .video .info {
+    flex: auto;
+}
+.playlist-builder > .search .video .info .button {
+    font-size: 10px;
+    height: 30px;
+    line-height: 30px;
+}
+.playlist-builder .thumbnail {
+    border: 1px solid rgba(255,255,255,0.1);
+}

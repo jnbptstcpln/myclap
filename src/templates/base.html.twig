@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+
+    <!-- Basic Page Needs ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <meta charset="utf-8">
+    <title>{% block page_title %}{% endblock %}</title>
+
+    <!-- Mobile Specific Metas ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% block meta %}{% endblock %}
+
+    <!-- Fonts ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    <link href="/static/bebasneue/bebasneue.css" rel="stylesheet">
+
+    <!-- FAVICON ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <link rel="icon" type="image/png" href="/static/myclap/favicon.png" />
+
+
+    <!-- CSS ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <link rel="stylesheet" href="/static/fontawesome/css/fontawesome.min.css?v=1.0.2">
+    <link rel="stylesheet" href="/static/fontawesome/css/all.min.css?v=1.0.2">
+    <link rel="stylesheet" href="/static/normalize/normalize.css?v=1.0.2">
+    <link rel="stylesheet" href="/static/aquila-light/aquila-light.css?v=1.0.2">
+    <link rel="stylesheet" href="{{ asset_url('myclap:f-extensions.css') }}">
+    {#<link rel="stylesheet" href="{{ asset_url('myclap:gradients.css') }}">#}
+    {% block css %}{% endblock %}
+    {% block head_js %}{% endblock %}
+
+</head>
+<!--
+    Site réalisé en janvier 2020 par Jean-Baptiste Caplan (Promo 2021)
+--->
+<body>
+{% block body %}{% endblock %}
+<!-- End Document ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+<script src="/static/fontawesome/js/fontawesome.min.js?v=1.0.2"></script>
+<script src="/static/fontawesome/js/all.min.js?v=1.0.2"></script>
+<script src="/static/fulgur/fulgur.min.js?v=1.0.2"></script>
+<script>
+    $ = Fulgur;
+</script>
+<script src="{{ asset_url('myclap:globals.js') }}"></script>
+<script src="{{ asset_url('myclap:f-extensions.js') }}"></script>
+{% block js %}{% endblock %}
+</body>
+</html>

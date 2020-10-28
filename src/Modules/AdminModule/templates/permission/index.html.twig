@@ -1,0 +1,69 @@
+{% extends '/layout_admin.html.twig' %}
+
+{% block page_title %}
+    myCLAP Administration - Permissions
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center no-border">
+        <div>
+            <h2>Administration</h2>
+            <h1>Permissions des utilisateurs</h1>
+        </div>
+    </div>
+
+    <div class="overlay p-10 max-w-1000 ms-auto br-5">
+
+        <div class="fulgur-buttons-navigation mb-20">
+            <a class="button" href="#permissions">Liste des permissions</a>
+            <a class="button" href="#utilisateurs">Recherche utilisateur</a>
+        </div>
+
+        <div class="fulgur-buttons-navigation-container">
+
+            <div id="permissions" class="p-10">
+
+                <div class="max-w-500 ms-auto mb-15">
+                    <input type="search" class="fulgur-search_table fullwidth" data-table-id="permissions-table" placeholder="Rechercher une permission">
+                </div>
+
+                <table class="fullwidth" id="permissions-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for permission in __PERMISSIONS %}
+                            <tr>
+                                <td>{{ permission.identifier }}</td>
+                                <td>{{ permission.description }}</td>
+                                <td>
+                                    <a class="button" href="{{ route_url('admin-permission-identifier', permission.identifier) }}">Voir</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="utilisateurs" class="p-10">
+                <div class="fulgur-search_item"
+                     data-url="{{ route_url('admin-permissionapi-searchuser1') }}"
+                     data-itemwidth="400"
+                     data-placeholder="Recherche un utilisateur..."
+                     data-nomatch="Aucun utilisateur ne correspond à votre recherche"
+                ></div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+{% endblock %}

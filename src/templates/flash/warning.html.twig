@@ -1,0 +1,14 @@
+{% set flashes = app.flashes('warning') %}
+{% if flashes %}
+    <div class="alert alert-warning">
+        {% if flashes|length > 1 %}
+            <ul>
+                {% for flash in flashes %}
+                    <li>{{ flash.message }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ flashes[0].message|nl2br }}</p>
+        {% endif %}
+    </div>
+{% endif %}

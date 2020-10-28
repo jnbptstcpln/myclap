@@ -1,0 +1,93 @@
+{% extends '/layout_manager.html.twig' %}
+
+{% block page_title %}
+    myCLAP Manager - Vidéos
+{% endblock %}
+
+{% block content %}
+
+    <div class="section-header">
+        <div>
+            <h2>Vidéos en ligne</h2>
+            {% set count_video = videos|length %}
+            <h3>{{ count_video }} vidéo{% if count_video > 1 %}s{% endif %}</h3>
+        </div>
+        <div class="link">
+            <a class="button" href="{{ route_url('manager-video-create') }}"><i class="fas fa-video-plus"></i> Ajouter une vidéo</a>
+        </div>
+    </div>
+
+    <div class="mb-25">
+        <div class="alert alert-info">
+            <p>
+                Un petit guide est disponible pour vous guider dans la mise en ligne d'une vidéo sur myCLAP : <a href="/MettreEnLigne.zip">Télécharger le guide</a>.
+            </p>
+        </div>
+    </div>
+
+    <div class="mb-25">
+        {% include '/flash/info.html.twig' %}
+    </div>
+
+    <table class="fullwidth">
+        <thead>
+            <tr>
+                <th class="pl-10">Vidéo</th>
+                <th class="text-center">Visibilité</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Ajoutée par</th>
+                <th class="text-center">Vues</th>
+                <th class="text-center">Réactions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for video in videos %}
+            <tr>
+                <td style="width: 40%">
+                    <div class="layout video">
+                        <div class="layout center">
+                            <div class="thumbnail fulgur-background_loading" data-url="{{ route_url('watch-media-thumbnail', video.token, 360) }}"></div>
+                        </div>
+                        <div class="info-action">
+                            <div class="info">
+
+                                <h2>{% if video.upload_status != 0 %}<span class="text-red"><i class="far fa-video-slash"></i></span>{% endif %} {{ " " ~ video.name }}</h2>
+                            </div>
+                            <div class="actions">
+                                <a href="{{ route_url('manager-video-edit', video.token) }}" title="Modifier">
+                                    <i class="fas fa-pencil"></i>
+                                </a>
+                                {% if video.upload_status == 0 %}
+                                    <a href="{{ route_url('watch-index', video.token) }}" title="Regarder" target="_blank">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ route_url('manager-video-upload', video.token) }}" title="Téléverser">
+                                        <i class="fas fa-upload"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-center">
+                    {{ video.access }}
+                </td>
+                <td class="text-center">
+                    {{ video.created_on|date('d/m/Y') }}
+                </td>
+                <td class="text-center">
+                    {{ video.uploaded_by }}
+                </td>
+                <td class="text-center">
+                    {{ video.views }}
+                </td>
+                <td class="text-center">
+                    {{ video.reactions }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

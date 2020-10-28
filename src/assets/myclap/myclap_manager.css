@@ -1,0 +1,397 @@
+table {
+    border-collapse: collapse;
+}
+table thead tr:last-child th {
+    border-bottom: 1px solid #9b9b9b;
+}
+table tfoot tr:first-child td {
+    border-top: 1px solid #9b9b9b;
+}
+th {
+    padding: 5px;
+    text-align: left;
+    vertical-align: center;
+}
+td {
+    padding: 5px 1px;
+    text-align: left;
+    vertical-align: center;
+}
+tbody > tr {
+    transition: background-color 150ms;
+}
+tbody > tr:hover {
+    background-color: rgba(255,255,255,0.02);
+}
+
+/**
+ * TD VIDEO
+ */
+td > .layout.video > div {
+    padding: 10px;
+}
+td > .layout.video .thumbnail {
+    background-image: url("/static/myclap/thumbnail/placeholder480.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    padding-top: 56.25%;
+    position: relative;
+    width: 150px;
+}
+tr td > .layout.video > .info-action > * {
+    display: none;
+}
+tr:not(:hover) td > .layout.video > .info-action > .info {
+    display: flex;
+}
+tr:hover td > .layout.video > .info-action > .actions {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    font-size: 1.25em;
+    padding: 0 15px;
+}
+td > .layout.video > .info-action > .actions a {
+    color: #cdcdcd;
+    text-decoration: none;
+    transition: color 150ms;
+    width: 30px;
+    margin: 0 10px;
+}
+td > .layout.video > .info-action > .actions a:hover {
+    color: white;
+}
+td > .layout.video .info {
+    align-items: center;
+    height: 100%;
+}
+td > .layout.video .info h2 {
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.25em;
+    margin: 0;
+}
+
+/**
+ * TD PLAYLIST
+ */
+td > .layout.playlist > div {
+    padding: 10px;
+}
+tr td > .layout.playlist > .info-action > div {
+    display: none;
+}
+tr:not(:hover) td > .layout.playlist > .info-action > .info {
+    display: flex;
+}
+tr:hover td > .layout.playlist > .info-action > .actions {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    font-size: 1.25em;
+    padding: 0 15px;
+}
+td > .layout.playlist > .info-action > .actions a {
+    color: #cdcdcd;
+    text-decoration: none;
+    transition: color 150ms;
+    width: 30px;
+    margin: 0 10px;
+}
+td > .layout.playlist > .info-action > .actions a:hover {
+    color: white;
+}
+td > .layout.playlist .info {
+    align-items: center;
+    height: 100%;
+}
+td > .layout.playlist .info-action h2 {
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.25em;
+    margin: 0;
+}
+
+/**
+ * ROW VIDEOS
+ */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+}
+.row > .video > * {
+    color: whitesmoke;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+}
+.row > .video .thumbnail {
+    background-image: url("/static/myclap/thumbnail/placeholder480.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: calc(100% - 10px);
+}
+.row > .video .thumbnail > div {
+    background-color: rgba(0,0,0,0.25);
+    background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+    height: 100%;
+    opacity: 0;
+    padding-top: 56.25%;
+    transition: opacity ease 300ms;
+    width: 100%;
+}
+.row > .video:hover .thumbnail > div {
+    opacity: 1;
+}
+.row > .video .thumbnail > div > span {
+    color: #d50000;
+    display: flex;
+    font-size: 5em;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+.row > .video .info {
+    padding: 0 5px;
+}
+.row > .video .info > h3 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+.row > .video .info > p {
+    color: #c7c7cd;
+    font-size: 0.8em;
+}
+
+/**
+ * ROW HORIZONTAL VIDEOS
+ */
+.row.horizontal {
+    display: block;
+    max-width: 1250px;
+    margin: auto;
+}
+.row.horizontal > .video {
+    padding: 10px;
+    transition: background-color 300ms;
+    width: 100% !important;
+}
+.row.horizontal > .video:hover {
+    background-color: rgba(255,255,255,0.03);
+}
+.row.horizontal > .video > * {
+    color: white;
+    display: flex;
+    text-decoration: none;
+    width: 100%;
+}
+.row.horizontal > .video > * > div {
+    display: inline-block;
+}
+.row.horizontal > .video .thumbnail {
+    background-image: url("/static/myclap/thumbnail/placeholder480.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 275px;
+}
+.row.horizontal > .video .thumbnail > div {
+    background-color: rgba(0,0,0,0.25);
+    background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+    height: 100%;
+    opacity: 0;
+    padding-top: 56.25%;
+    transition: opacity ease 300ms;
+    width: 100%;
+}
+.row.horizontal > .video:hover .thumbnail > div {
+    opacity: 0;
+}
+.row.horizontal > .video .thumbnail > div > span {
+    color: #d50000;
+    display: flex;
+    font-size: 3em;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+.row.horizontal > .video .info {
+    margin-left: 25px;
+}
+.row.horizontal > .video .info h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2em;
+    margin: 10px 0 5px;
+}
+.row.horizontal > .video .info h3 {
+    color: #c7c7cd;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9em;
+    margin: 0 0 15px;
+}
+.row.horizontal > .video .info p {
+    color: #c7c7cd;
+    font-size: 0.9em;
+    margin: 0;
+    text-align: justify;
+}
+
+/**
+ * TD PLAYLIST
+ */
+td > .layout.category > div {
+    padding: 10px;
+}
+tr td > .layout.category > .info-action > div {
+    display: none;
+}
+tr:not(:hover) td > .layout.category > .info-action > .info {
+    display: flex;
+}
+tr:hover td > .layout.category > .info-action > .actions {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    font-size: 1.25em;
+    padding: 0 15px;
+}
+td > .layout.category > .info-action > .actions a {
+    color: #cdcdcd;
+    text-decoration: none;
+    transition: color 150ms;
+    width: 30px;
+    margin: 0 10px;
+}
+td > .layout.category > .info-action > .actions a:hover {
+    color: white;
+}
+td > .layout.category .info {
+    align-items: center;
+    height: 100%;
+}
+td > .layout.category .info-action h2 {
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.25em;
+    margin: 0;
+}
+
+/**
+ * TD CONTENT
+ */
+td .button {
+    font-size: 10px;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 15px;
+}
+td input {
+    height: 32px;
+}
+
+/**
+ * SECTION HEADER
+ */
+.section-header {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    margin-bottom: 25px;
+    text-decoration: none;
+}
+.section-header > div {
+    display: inline-block;
+}
+.section-header > div.link {
+    flex: auto;
+    text-align: right;
+    margin-top: 15px;
+}
+.section-header h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.4em;
+    margin-bottom: 0;
+}
+.section-header h3 {
+    color: #97979c;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9em;
+    margin: 0;
+}
+.section-header a.button {
+    font-size: 10px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 10px;
+}
+
+/**
+ * HEADER CENTER
+ */
+.header-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 35px;
+    text-align: center;
+}
+.header-center.no-border h1 {
+    border-bottom: none;
+}
+.header-center h1 {
+    border-bottom: 3px solid red;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 3.5em;
+    line-height: 0.85em;
+    margin: 0;
+    padding: 0 15px;
+}
+.header-center h2 {
+    color: #c7c7cd;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8em;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+}
+
+/**
+ * VIDEO UPLOAD
+ */
+#video-progress progress, #video-progress progress[value]::-webkit-progress-bar {
+    -webkit-appearance: none;
+    appearance: none;
+
+    background-color: #333333;
+    border-radius: 3px;
+
+    width: 100%;
+    height: 60px;
+}
+#video-progress progress[value]::-webkit-progress-value {
+    background-color: red;
+}
+#video-progress h4 {
+    margin: 10px 0;
+}
+#percentage-display {
+    font-size: 2.5em;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bolder;
+
+}

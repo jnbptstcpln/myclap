@@ -1,0 +1,63 @@
+{% extends '/layout_manager.html.twig' %}
+
+{% block page_title %}
+    myCLAP Manager - Présentation
+{% endblock %}
+
+{% block content %}
+
+    <h2>Agencement de l'accueil</h2>
+
+    <div>
+
+        <h3>Annonces</h3>
+
+        <div class="overlay p-20 br-5">
+
+            <div class="max-w-1000 ms-auto">
+                <p>
+                    Vous avez la possiblité d'afficher différentes annonces en haut de la page d'accueil pour mettre en avant une
+                    vidéo, une playlist ou encore n'importe quel lien
+                </p>
+                <p>
+                    Vous avez la possibilité de créer 1 à 5 annonces qui s'afficheront sous la forme d'un diaporama. Si aucune
+                    annonce n'a été créée, le bloc disparait de la page d'accueil
+                </p>
+
+                <div class="mb-25">
+                    {% include "/flash/error.html.twig" %}
+                    {% include "/flash/success.html.twig" %}
+                    {% include "/flash/info.html.twig" %}
+                </div>
+
+                <div class="max-w-750 ms-auto">
+                    {% for key, ad in billboard %}
+                        <div class="overlay br-5 p-10 mb-25">
+                            <h4 class="text-center">Annonce #{{ (key+1) }}</h4>
+                            <div>
+                                <div class="{{ 'jumbotron small br-5 ' ~ ad.color }}">
+                                    <div>
+                                        <h1>{{ ad.title }}</h1>
+                                        <a class="button" href="{{ ad.url }}" target="_blank">{% if ad.icon %}<i style="margin-right: 5px" class="{{ 'fas ' ~ ad.icon }}"></i>{% endif %} {{ ad.button }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons-group">
+                                <a class="button" href="{{ route_url('manager-design-billboard-delete', ad.identifier) }}">Supprimer</a>
+                                <a class="button red" href="{{ route_url('manager-design-billboard-edit', ad.identifier) }}">Modifier</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% if billboard|length < 5 %}
+                        <div>
+                            <a class="button red block" href="{{ route_url('manager-design-billboard-add') }}">Ajouter une annonce</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

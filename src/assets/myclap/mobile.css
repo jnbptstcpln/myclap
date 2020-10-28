@@ -1,0 +1,293 @@
+@media (max-width: 800px) {
+
+    /**
+     * ROW ITEM WIDTH
+     */
+    .content .row > .video {
+        width: 50%;
+    }
+    .content .row > .playlist-broadcast {
+        width: 100%;
+    }
+    .playlist-broadcast .row {
+        display: none;
+    }
+    .playlist > .row {
+        display: none;
+    }
+    .video-container > .row > .video {
+        width: 50%;
+        font-size: 0.6em;
+    }
+
+    /**
+     * FONT SIZE
+     */
+    .content > h2 {
+        font-size: 2em;
+    }
+    .section-header h2 {
+        font-size: 2em;
+    }
+    .section-header .button {
+        font-size: 8px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+    }
+    .jumbotron {
+        font-size: 0.5em;
+        min-height: 175px;
+    }
+    .jumbotron .button {
+        font-size: 8px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+    }
+    .playlist-broadcast .heading {
+        font-size: 1em;
+    }
+    .button {
+        font-size: 9px;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 20px;
+    }
+    .video-container h3 {
+        font-size: 1em;
+    }
+    .header-center h1 {
+        font-size: 2.75em;
+    }
+    .video-container .video-placeholder p {
+        max-width: 200px;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 0.8em;
+    }
+    .video-container .video-placeholder .icon {
+        font-size: 3em;
+    }
+    .video-container > .info h1 {
+        font-size: 2em;
+    }
+
+
+    /**
+     * MARGIN
+     */
+    h2.header-with-date span.pipe {
+        margin: 0 10px;
+    }
+    .playlist .layout {
+        margin: 0;
+    }
+    .video-container > .info {
+        margin-bottom: 25px;
+    }
+    .header-center {
+        margin-bottom: 25px;
+    }
+
+    /**
+     * TOPBAR
+     */
+    body > .topbar > form {
+        display: none;
+    }
+    body > .topbar .buttons {
+        display: none;
+    }
+    body > .topbar .buttons.mobile {
+        display: flex;
+    }
+
+    /**
+     * TOPBAR SEARCH
+     */
+    body > .topbar > .search {
+        margin: 0;
+    }
+    body > .topbar > .search > div {
+        display: flex;
+        width: 100vw;
+    }
+    body > .topbar > .search > div > div {
+        background-color: transparent;
+    }
+    body > .topbar > .search .icon {
+        display: unset;
+        text-align: center;
+        width: 40px;
+    }
+    .topbar > .search > div > div {
+        margin: 0 5px;
+    }
+    .topbar > .search > div > div:last-child {
+        margin-right: 10px;
+    }
+    .topbar > .search > div > div button {
+        font-size: 1.3em;
+        padding: 0;
+        width: 50px;
+
+    }
+    body > .topbar[data-search="show"] > * {
+        display: none !important;
+    }
+    body > .topbar[data-search="show"] > form {
+        display: flex !important;
+    }
+    body > .layout[data-search="show"] > .wrapper {
+        pointer-events: none;
+        opacity: 0.1;
+    }
+
+
+    /**
+     * LEFTBAR
+     */
+    body > .layout[data-leftbar="mini"] > .leftbar, body > .layout > .leftbar {
+        left: calc(0px - var(--leftbar-width));
+        position: absolute;
+        transition: left 150ms ease;
+        width: var(--leftbar-width);
+    }
+    body > .layout[data-leftbar="full"] > .leftbar {
+        display: block;
+        position: fixed;
+        left: 0;
+    }
+    body > .layout[data-leftbar="full"] > .wrapper {
+        pointer-events: none;
+        opacity: 0.1;
+        transition: opacity 150ms ease;
+    }
+    body > .layout > .wrapper, body > .layout > .wrapper {
+        width: 100vw;
+        margin-left: 0;
+    }
+
+    /**
+     * SEARCH RESULT VIDEO
+     */
+    .row-horizontal > .video {
+        padding: 0;
+        margin-bottom: 15px;
+    }
+    .row-horizontal > .video .thumbnail {
+        width: 200px;
+    }
+    .row-horizontal > .video .info {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    .row-horizontal > .video .info h2 {
+        font-size: 2em;
+        margin: 2px 0 0;
+    }
+    .row-horizontal > .video .info h3 {
+        font-size: 0.9em;
+        margin: 0 0 5px;
+    }
+    .row-horizontal > .video .info p {
+        font-size: 0.6em;
+        display: none;
+    }
+
+    /**
+     * VIDEO CONTAINER
+     */
+    .video-container > .info {
+        font-size: 0.75em;
+        margin-top: 20px;
+        padding: 0;
+    }
+    .video-container > .info > .layout {
+        display: block;
+        margin-bottom: 15px;
+    }
+    .video-container > .info > .layout > .action {
+        margin-top: 20px;
+        justify-content: center;
+    }
+    .video-container > .info > .layout > .action > div {
+        width: 100%;
+    }
+    .video-container > .info > .layout > .action .button {
+        display: block;
+        flex: auto;
+    }
+
+    /**
+     * ROW HORIZONTAL
+     */
+    .row.horizontal > .video a {
+        display: block;
+    }
+    .row.horizontal > .video a > div {
+        width: 100%;
+    }
+    .row.horizontal > .video a .thumbnail {
+        margin: auto;
+        width: 100%;
+    }
+    .row.horizontal > .video a .info {
+        margin: 0;
+    }
+    .row.horizontal > .video a .info h2 {
+        font-size: 1.5em;
+    }
+    .row.horizontal > .video a .info h3 {
+        font-size: 0.75em;
+    }
+}
+@media (max-width: 550px) {
+
+    /**
+     * ROW ITEM WIDTH
+     */
+    .content .row > .video {
+        width: 100%;
+    }
+
+    /**
+     * SEARCH RESULT VIDEO
+     */
+    .row-horizontal {
+        max-width: 500px;
+        margin: auto;
+    }
+    .row-horizontal > .video .thumbnail {
+        width: 160px;
+    }
+    .row-horizontal > .video .info h2 {
+        font-size: 1.5em;
+        margin: 2px 0 0;
+    }
+    .row-horizontal > .video .info h3 {
+        font-size: 0.7em;
+        margin: 0 0 5px;
+    }
+
+}
+@media (min-width: 800px) and (max-width: 1200px) {
+
+    /**
+     * ROW ITEM WIDTH
+     */
+    .content .row > .video {
+        width: 50%;
+    }
+    .content .row > .playlist-broadcast {
+        width: 100%;
+    }
+
+    /**
+     * FONT SIZE
+     */
+    .playlist-broadcast .heading {
+        font-size: 1em;
+    }
+}

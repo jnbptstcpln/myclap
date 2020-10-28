@@ -1,0 +1,191 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}{{ video.name }}{% endblock %}
+
+{% block meta %}
+    <meta property="og:image" content="{{ route_url('watch-media-thumbnail', video.token, 1080) }}" />
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/static/plyr/plyr.css">
+    <style>
+        /** ----- PLYR ----- */
+        .plyr--full-ui input[type=range] {
+            color: red !important;
+        }
+        .plyr__control--overlaid {
+            background: rgba(255, 5, 2, 0.8) !important;
+        }
+        .plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+            background: red !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="video-container">
+        <video poster="{{ route_url('watch-media-thumbnail', video.token, 1080) }}" id="player" playsinline controls>
+            <source src="{{ route_url('watch-media-video', video.token) }}" />
+        </video>
+        <div class="info">
+            <div class="layout">
+                <div class="layout">
+                    {% if video.access == 'Privée' or video.access == 'Non répertoriée' %}
+                    <div class="layout center video-icon">
+                        <div>
+                        {% if video.access == 'Privée' %}<span class="icon"><i class="fas fa-lock-alt" title="Cette vidéo est privée"></i></span>{% endif %}
+                        {% if video.access == 'Non répertoriée' %}<span class="icon"><i class="fas fa-unlink" title="Cette vidéo n'est pas répertoriée"></i></span>{% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <h1>{{ video.name }}</h1>
+                        <h2>{{ video.views }} vue{% if video.views > 1 %}s{% endif %} {{ " • " }} {{ video.created_on|date_label }}</h2>
+                    </div>
+                </div>
+                <div class="action">
+                    <div>
+                        {% if __UserModule.hasPermission('manager.video.manage') %}
+                            <a class="button" href="{{ route_url('manager-video-edit', video.token) }}" title="Accéder au formulaire d'édition">
+                                <i class="fas fa-pencil"></i>
+                            </a>
+                        {% endif %}
+                        {% if __UserModule.hasPermission('manager.stat') %}
+                            <a class="button" href="{{ route_url('manager-stat-video', video.token) }}" title="Accéder aux statistiques de cette vidéo">
+                                <i class="fas fa-chart-line"></i>
+                            </a>
+                        {% endif %}
+                        <a class="button" href="{{ route_url('watch-media-video-download', video.token) }}" title="Télécharger la vidéo">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        {% if __UserModule.isConnected() %}
+                        <a class="button reaction {% if video.user_did_like %} active{% endif %}" title="Ajouter à mes favoris">
+                            <span class="empty"><i class="far fa-heart"></i></span>
+                            <span class="full"><i class="fas fa-heart"></i></span>
+                            <span class="button-label">{{ video.reactions }}</span>
+                        </a>
+                        {% else %}
+                        <a class="button reaction active disabled">
+                            <span class="empty"><i class="far fa-heart"></i></span>
+                            <span class="full"><i class="fas fa-heart"></i></span>
+                            <span class="button-label">{{ video.reactions }}</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            {#
+            {% set categories = video.categories|json_decode %}
+            {% if categories|length > 0 %}
+            <div>
+                {% for category in categories %}
+                    <a class="label" href="#">{{ category }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            #}
+
+            <p class="min-h-50">
+                {{ video.description|nl2br }}
+            </p>
+        </div>
+
+        {#
+
+        <h3>A voir aussi...</h3>
+
+        <div class="row">
+
+            {% for i in [1,2,3,4,5,6,7,8] %}
+
+                <div class="video">
+                    <a href="{{ route_url('watch-index', 'test') }}">
+                        <div class="thumbnail" style="background-image: url('/static/myclap/thumbnail/placeholder.png')">
+                            <div>
+                            <span class="fa-stack">
+                                <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                                <i class="fas fa-play-circle fa-stack-1x"></i>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h3>Recettes pompettes en B211</h3>
+                            <p>365 vues • Il y a 1 an</p>
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        #}
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="/static/plyr/plyr.min.js"></script>
+    <script>
+        var playback_session_id = null;
+        Player = new Plyr('#player', {
+            fullscreen:{iosNative:true}
+        });
+        Player.on('playing', function(event) {
+            if (!playback_session_id) {
+                $.api.post(
+                    '{{ route_url('watch-statapi-init', video.token) }}',
+                    {},
+                    function(response) {
+                        if (response.success) {
+                            playback_session_id = response.payload.playback_sid;
+                        }
+                    }
+                )
+            }
+        });
+        setInterval(function() {
+            if (playback_session_id && Player.playing) {
+                $.api.post(
+                    '{{ route_url('watch-statapi-update', video.token) }}',
+                    {playback_sid: playback_session_id},
+                    function(response) {
+                        if (response.success) {
+                            playback_session_id = response.payload.playback_sid;
+                        } else {
+                            playback_session_id = null;
+                        }
+                    }
+                )
+            }
+        }, 5000);
+        {% if __UserModule.isConnected() %}
+            $('.button.reaction').on('click', function(event) {
+                event.preventDefault();
+                Button = event.element;
+                $.api.post(
+                    '{{ route_url('watch-reactionapi-toggle', video.token) }}',
+                    {},
+                    function(response) {
+                        if (response.success) {
+                            if (response.payload.active) {
+                                Button.addClass('active');
+                                ButtonLabel = Button.find('.button-label');
+                                ButtonLabel.text(parseInt(ButtonLabel.text()) + 1);
+                            } else {
+                                Button.removeClass('active');
+                                ButtonLabel = Button.find('.button-label');
+                                ButtonLabel.text(Math.max(parseInt(ButtonLabel.text()) - 1, 0));
+                            }
+                        } else {
+                            alert(response.message)
+                        }
+                    }
+                )
+            });
+        {% endif %}
+    </script>
+{% endblock %}

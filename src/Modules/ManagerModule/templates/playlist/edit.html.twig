@@ -1,0 +1,89 @@
+{% extends '/layout_manager.html.twig' %}
+
+{% block page_title %}
+    myCLAP Manager - Modifier "{{ playlist.name }}"
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset_url('myclap:playlist-builder.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center no-border">
+        <div>
+            <h2>{{ playlist.name }}</h2>
+            <h1>Modifier</h1>
+        </div>
+    </div>
+
+    <div class="overlay p-20 max-w-1000 ms-auto br-5">
+        <form method="{{ form.method }}" action="{{ form.action }}" enctype="{{ form.enctype }}" class="mb-0">
+
+            {{ form.csrf_token|render }}
+
+            <div class="mb-25">
+                {% include '/flash/success.html.twig' %}
+            </div>
+
+            {% if form.errors|length > 0 %}
+                <div class="p-10">
+                    <div class="alert alert-error">
+                        {% if form.errors|length > 1 %}
+                            <ul>
+                                {% for error in form.errors %}
+                                    <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>{{ form.errors.get(0).message }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="fulgur-buttons-navigation">
+                <a class="button" href="#informations">Informations</a>
+                <a class="button" href="#videos">Vidéos</a>
+            </div>
+
+            <div class="fulgur-buttons-navigation-container">
+                <div id="informations">
+                    <div class="field">
+                        {{ form.type|render }}
+                    </div>
+                    <div class="field">
+                        {{ form.name|render }}
+                    </div>
+                    <div class="field">
+                        {{ form.created_on|render }}
+                    </div>
+                    <div class="field">
+                        {{ form.access|render }}
+                    </div>
+                    <div class="field">
+                        {{ form.description|render }}
+                    </div>
+                </div>
+                <div id="videos">
+                    <div class="field">
+                        {{ form.videos|render }}
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="mt-25 mb-15">
+
+            <div class="text-right">
+                <button class="button red" type="submit">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="{{ asset_url('myclap:playlist-builder.js') }}"></script>
+{% endblock %}

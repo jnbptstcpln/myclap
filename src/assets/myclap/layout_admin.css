@@ -1,0 +1,209 @@
+html {
+    width: 100%;
+}
+body {
+    min-height: 100vh;
+    width: 100%;
+}
+
+/**
+ * TOPBAR
+ */
+
+.topbar {
+    background-color: #232323;
+    height: 60px;
+    display: flex;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.topbar > .leftbar-toggle {
+    line-height: 60px;
+    text-align: center;
+    width: 75px;
+}
+.topbar > .leftbar-toggle > a {
+    color: white;
+    font-size: 1.25em;
+}
+
+.topbar > .myclap-brand {
+    text-align: center;
+    width: 175px;
+}
+.topbar > .myclap-brand > a {
+    background-image: url('/static/myclap/myclap-admin.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: block;
+    height: 100%;
+    width: 175px;
+}
+
+.topbar > .buttons {
+    display: flex;
+    flex: auto;
+    justify-content: flex-end;
+    padding: 0 15px 0 0;
+}
+.topbar > .buttons.mobile {
+    display: none;
+    flex: auto;
+}
+.topbar > .buttons > div {
+    line-height: 60px;
+    margin: 0 5px;
+}
+.topbar > .buttons > div.icon {
+    text-align: center;
+    width: 50px;
+}
+.topbar > .buttons > div.icon > a {
+    color: white;
+    font-size: 1.25em;
+}
+
+.topbar > .buttons a.login {
+    border: none;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    bottom: 2px;
+    vertical-align: inherit;
+}
+.topbar > .buttons a.login > span {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+/**
+ * LEFTBAR
+ */
+body > .layout {
+    display: flex;
+}
+body > .layout[data-leftbar="full"], body > .layout {
+    --leftbar-width: 225px;
+}
+body > .layout[data-leftbar="mini"] {
+    --leftbar-width: 75px;
+}
+body > .layout[data-leftbar="none"] {
+    --leftbar-width: 0;
+}
+body > .layout > .leftbar {
+    background-color: #262626;
+    height: calc(100vh - 60px);
+    margin-top: 60px;
+    position: fixed;
+    padding: 10px 0;
+    transition: width 300ms;
+    z-index: 1000;
+}
+body > .layout[data-leftbar="full"] > .leftbar, body > .layout > .leftbar {
+    width: var(--leftbar-width);
+}
+body > .layout[data-leftbar="mini"] > .leftbar {
+    width: var(--leftbar-width);
+}
+
+body > .layout[data-leftbar="none"] > .leftbar {
+    display: none;
+}
+body > .layout > .leftbar ul.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+body > .layout > .leftbar ul.menu > li {
+    --height: 50px;
+    align-items: center;
+    height: var(--height);
+    width: 100%;
+    transition: background-color ease 150ms;
+}
+body > .layout > .leftbar ul.menu > li.active, body > .layout > .leftbar ul.menu > li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+body > .layout > .leftbar ul.menu > li > a {
+    color: #cdcdcd;
+    display: flex;
+    height: 100%;
+    line-height: var(--height);
+    text-decoration: none;
+    width: 100%;
+}
+body > .layout[data-leftbar="mini"] > .leftbar ul.menu > li > a {
+    text-align: center;
+}
+body > .layout > .leftbar ul.menu > li.active > a {
+    color: white;
+}
+body > .layout > .leftbar ul.menu > li > a > span.icon {
+    display: block;
+    font-size: 1.2em;
+    text-align: center;
+    width: 75px;
+}
+body > .layout[data-leftbar="full"] > .leftbar ul.menu > li > a > span.icon {
+    margin-right: 0;
+}
+body > .layout > .leftbar ul.menu > li > a > span.menu-label {
+    flex: auto;
+    font-family: Montserrat, sans-serif;
+    font-size: 0.9em;
+    left: 75px;
+    opacity: 1.0;
+    position: absolute;
+    text-transform: uppercase;
+    transition: opacity 100ms ease-out 100ms;
+}
+body > .layout[data-leftbar="mini"] > .leftbar ul.menu > li > a > span.menu-label {
+    opacity: 0;
+    transition: opacity 100ms;
+}
+body > .layout > .leftbar > hr {
+    border: none;
+    border-top: 1px solid #717175;
+    margin: 5px 0;
+}
+
+/**
+ * WRAPPER
+ */
+body > .layout > .wrapper {
+    flex: auto;
+    margin-top: 60px;
+}
+body > .layout > .wrapper, body > .layout > .wrapper {
+    width: calc(100vw - var(--leftbar-width));
+    margin-left: var(--leftbar-width);
+    transition: width 300ms, margin-left 300ms;
+}
+
+/**
+ * CONTENT
+ */
+.content {
+    padding: 20px;
+}
+.content > h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.4em;
+    margin-bottom: 10px;
+}
+.content > h2:not(:first-child) {
+    margin-top: 25px;
+}
+.content > hr {
+    border: none;
+    border-top: 5px solid rgba(255, 255, 255, 0.1);
+    margin: 15px 0;
+}
+.content > .jumbotron {
+    border-radius: 5px;
+}

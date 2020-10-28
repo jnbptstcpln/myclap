@@ -1,0 +1,10 @@
+
+search-index-search:
+  method: 'GET'
+  path: '/rechercher'
+  action: 'SearchModule:Index:search'
+
+search-listapi-search:
+  method: 'GET'
+  path: '/listapi/search/[*:search_value]'
+  action: 'SearchModule:ListAPI:search_html'

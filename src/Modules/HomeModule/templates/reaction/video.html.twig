@@ -1,0 +1,21 @@
+{% spaceless %}
+    <div class="video">
+        <a href="{{ route_url('watch-index', video.token) }}">
+            <div>
+                <div class="thumbnail fulgur-background_loading" data-url="{{ route_url('watch-media-thumbnail', video.token, 360) }}">
+                    <div>
+                        <span class="fa-stack">
+                            <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                            <i class="fas fa-play-circle fa-stack-1x"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <h2>{{ video.name }}</h2>
+                <h3>{{ video.views|views_label ~ " • " ~ video.created_on|since_label }}</h3>
+                <p>{{ video.description|nl2br }}</p>
+            </div>
+        </a>
+    </div>
+{% endspaceless %}

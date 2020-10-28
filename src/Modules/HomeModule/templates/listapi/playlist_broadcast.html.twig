@@ -1,0 +1,10 @@
+{% spaceless %}
+    <a class="playlist-broadcast" href="{{ route_url('home-playlist-details', playlist.slug) }}">
+        <div>
+            <div class="heading">
+                <h2>{{ playlist.name }}</h2>
+                <h3>{{ playlist.created_on|date_label }}</h3>
+            </div>
+        </div>
+    </a>
+{% endspaceless %}

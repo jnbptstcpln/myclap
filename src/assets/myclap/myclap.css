@@ -1,0 +1,469 @@
+
+/**
+ * DATE-HEADER
+ */
+h2.header-with-date {
+    font-size: 2em;
+    display: inline-block;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+h2.header-with-date > span.title {
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 0.01em;
+}
+h2.header-with-date span.date {
+    color: #afafaf;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.6em;
+    letter-spacing: 0.01em;
+    display: inline-block;
+    position: relative;
+    text-align: justify;
+    top: 5px;
+}
+h2.header-with-date span.date > span {
+    display: block;
+}
+h2.header-with-date span.date > span.year {
+    letter-spacing: 0.25em;
+}
+h2.header-with-date span.pipe {
+    border: 2px solid red;
+    margin: auto 10px;
+}
+
+/**
+ * ROW ITEM WIDTH
+ */
+.content .row > .video {
+    width: 25%;
+    margin-bottom: 15px;
+}
+.content .row > .playlist-broadcast {
+    width: 50%;
+    margin-bottom: 15px;
+}
+.playlist-broadcast .row > .video {
+    width: 10%;
+}
+.playlist > .row > .video {
+    width: 10%;
+}
+
+/**
+ * ROW VIDEOS
+ */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: normal;
+    width: 100%;
+}
+.row > .video > a {
+    color: whitesmoke;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+}
+.row > .video .thumbnail {
+    background-image: url("/static/myclap/thumbnail/placeholder480.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: calc(100% - 10px);
+}
+.row > .video .thumbnail > div {
+    background-color: rgba(0,0,0,0.25);
+    background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+    height: 100%;
+    opacity: 0;
+    padding-top: 56.25%;
+    transition: opacity ease 300ms;
+    width: 100%;
+}
+.row > .video:hover .thumbnail > div {
+    opacity: 1;
+}
+.row > .video .thumbnail > div > span {
+    color: #d50000;
+    display: flex;
+    font-size: 5em;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+.row > .video .info {
+    padding: 0 5px;
+}
+.row > .video .info > h3 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+.row > .video .info > p {
+    color: #c7c7cd;
+    font-size: 0.8em;
+}
+
+/**
+ * ROW HORIZONTAL VIDEOS
+ */
+.row.horizontal {
+    display: block;
+    max-width: 1250px;
+    margin: auto;
+}
+.row.horizontal > .video {
+    padding: 10px;
+    transition: background-color 300ms;
+    width: 100% !important;
+}
+.row.horizontal > .video:hover {
+    background-color: rgba(255,255,255,0.03);
+}
+.row.horizontal > .video > a {
+    color: white;
+    display: flex;
+    text-decoration: none;
+    width: 100%;
+}
+.row.horizontal > .video > a > div {
+    display: inline-block;
+}
+.row.horizontal > .video .thumbnail {
+    background-image: url("/static/myclap/thumbnail/placeholder480.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 275px;
+}
+.row.horizontal > .video .thumbnail > div {
+    background-color: rgba(0,0,0,0.25);
+    background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+    height: 100%;
+    opacity: 0;
+    padding-top: 56.25%;
+    transition: opacity ease 300ms;
+    width: 100%;
+}
+.row.horizontal > .video:hover .thumbnail > div {
+    opacity: 0;
+}
+.row.horizontal > .video .thumbnail > div > span {
+    color: #d50000;
+    display: flex;
+    font-size: 3em;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+.row.horizontal > .video .info {
+    margin-left: 25px;
+}
+.row.horizontal > .video .info h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2em;
+    margin: 10px 0 5px;
+}
+.row.horizontal > .video .info h3 {
+    color: #c7c7cd;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9em;
+    margin: 0 0 15px;
+}
+.row.horizontal > .video .info p {
+    color: #c7c7cd;
+    font-size: 0.9em;
+    margin: 0;
+    text-align: justify;
+}
+
+/**
+ * PLAYLIST
+ */
+.playlist {
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    margin: 10px auto;
+    padding: 10px;
+}
+.playlist .layout {
+    display: flex;
+    margin: 0 10px 10px;
+}
+.playlist .layout > span.icon {
+    display: block;
+    font-size: 2.25em;
+    width: 50px;
+}
+.playlist .layout > a {
+    color: inherit;
+    display: block;
+    flex: auto;
+    text-decoration: none;
+}
+.playlist .layout > a:hover > h2 {
+    text-decoration: underline;
+}
+.playlist h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.3em;
+    margin: 0 0 3px;
+}
+.playlist h3 {
+    color: #97979c;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.75em;
+    margin: 0;
+}
+.playlist > .row {
+    flex-wrap: nowrap;
+}
+.playlist > .row > .video {
+    max-width: 128px;
+    pointer-events: none;
+}
+.playlist > .row > .video .thumbnail {
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/**
+ * playlist-broadcast
+ */
+.playlist-broadcast {
+    color: white;
+    display: inline-block;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+.playlist-broadcast > div {
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 20px 10px;
+    transition: background-color 300ms;
+    width: calc(100% - 30px);
+}
+.playlist-broadcast:hover > div {
+    background-color: rgba(255,255,255,0.1);
+}
+.playlist-broadcast .heading {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.25em;
+    text-align: center;
+}
+.playlist-broadcast .heading h2 {
+    font-size: 2em;
+    letter-spacing: 0.01em;
+    margin: 0;
+}
+.playlist-broadcast .heading h3 {
+    color: #c7c7cd;
+    margin: 0;
+}
+.playlist-broadcast p {
+    color: #c7c7cd;
+    font-size: 0.9em;
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: justify;
+}
+.playlist-broadcast div.play {
+    max-width: 300px;
+    margin: auto;
+}
+.playlist-broadcast div.play > a.button {
+    border: none;
+    display: block;
+}
+.playlist-broadcast .row {
+    justify-content: center;
+    margin: 10px auto;
+}
+.playlist-broadcast .row > .video .thumbnail > div > span {
+    font-size: 1.5em;
+}
+
+/**
+ * SECTION HEADER
+ */
+.section-header {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    margin-bottom: 25px;
+    text-decoration: none;
+}
+.section-header > div {
+    display: inline-block;
+}
+.section-header > div.link {
+    flex: auto;
+    text-align: right;
+    margin-top: 15px;
+}
+.section-header h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.4em;
+    margin-bottom: 0;
+}
+.section-header h3 {
+    color: #97979c;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9em;
+    margin: 0;
+}
+.section-header a.button {
+    font-size: 10px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 10px;
+}
+
+
+/**
+ * SEARCH RESULT VIDEO
+ */
+.search-result-label {
+    color: #c7c7cd;
+    font-size: 0.9em;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/**
+ * HEADER CENTER
+ */
+.header-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 25px;
+    text-align: center;
+}
+.header-center.no-border h1 {
+    border-bottom: none;
+}
+.header-center h1 {
+    border-bottom: 3px solid red;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 3.5em;
+    line-height: 0.85em;
+    margin: 0;
+    padding: 0 15px;
+}
+.header-center h2 {
+    color: #c7c7cd;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8em;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+}
+
+/**
+ * VIDEO CONTAINER
+ */
+.video-container {
+    display: block;
+    margin: auto;
+    max-width: 1250px;
+    max-height: 1000px;
+}
+.video-container > .info {
+    padding: 20px;
+}
+.video-container > .info > .layout {
+    display: flex;
+    margin-bottom: 20px;
+}
+.video-container > .info > .layout > .action {
+    display: flex;
+    flex: auto;
+    justify-content: flex-end;
+}
+.video-container > .info > .layout > .action > div {
+    display: flex;
+    align-items: center;
+    font-size: 1.25em;
+}
+.video-container > .info > .layout > .action .button {
+    margin-left: 5px;
+    padding: 0 10px;
+    font-size: 13px;
+}
+.video-container > .info > .layout > .action .button.reaction > span.full {
+    color: deeppink;
+}
+.video-container > .info > .layout > .action .button.reaction:not(.active) > span.full {
+    display: none;
+}
+.video-container > .info > .layout > .action .button.reaction.active > span.empty {
+    display: none;
+}
+.video-container > .info .video-icon {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.5em;
+    width: 50px;
+}
+.video-container > .info h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.75em;
+    margin: 0;
+}
+.video-container > .info h2 {
+    color: #c7c7cd;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8em;
+    margin: 0;
+}
+.video-container > .info p {
+    text-align: justify;
+}
+.video-container hr {
+    border: none;
+    border-top: 0.75px solid rgba(247, 247, 255, 0.25);
+    margin: 10px 0;
+}
+.video-container h3 {
+    font-size: 1.5em;
+}
+.video-container > .row > .video {
+    width: 25%;
+}
+.video-container {
+    max-width: calc(75vh * 1.77);
+}
+.video-container .video-placeholder {
+    width: 100%;
+    padding-top: 56.25%;
+    background-color: #080808;
+    position: relative;
+}
+.video-container .video-placeholder > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+.video-container .video-placeholder .icon {
+    color: rgba(255,255,255, 0.9);
+    font-size: 8em;
+}
+
+.video-container.placeholder .placeholder {
+    padding: 7px 0;
+}

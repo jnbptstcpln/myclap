@@ -1,0 +1,154 @@
+{% extends '/base.html.twig' %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset_url('myclap:darker.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('myclap:gradient.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('myclap:layout_manager.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('myclap:myclap_manager.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('myclap:mobile.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="topbar overlay">
+        <div class="leftbar-toggle">
+            <a href="#" id="toggle-leftbar"><i class="fas fa-bars"></i></a>
+        </div>
+        <div class="myclap-brand">
+            <a href="{{ route_url('home-index') }}"></a>
+        </div>
+
+        <div class="buttons">
+
+            {% if __UserModule.isConnected() %}
+
+                {% if __UserModule.hasPermission('admin') %}
+                    <div class="icon">
+                        <a href="{{ route_url('admin-index') }}" title="Administration"><i class="fas fa-cogs"></i></a>
+                    </div>
+                {% endif %}
+
+                <div class="icon">
+                    <a href="{{ route_url('home-index') }}" title="Retour myCLAP"><i class="fas fa-globe"></i></a>
+                </div>
+
+                <div class="icon">
+                    <a href="{{ route_url('user-logout') }}" title="Se déconnecter"><i class="fas fa-sign-out"></i></a>
+                </div>
+            {% else %}
+                <div>
+                    <a class="button login gradient-royal-blue" href="{{ route_url('user-login') }}" title="Se connecter"><span><i class="fas fa-user-circle"></i></span> <span class="button-label">Se connecter</span></a>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="buttons mobile">
+
+            {% if __UserModule.isConnected() %}
+                <div class="icon">
+                    <a href="{{ route_url('home-index') }}" title="Retour myCLAP"><i class="fas fa-globe"></i></a>
+                </div>
+
+                <div class="icon">
+                    <a href="{{ route_url('user-logout') }}" title="Se déconnecter"><i class="fas fa-sign-out"></i></a>
+                </div>
+            {% else %}
+                <div class="icon">
+                    <a href="{{ route_url('home-index') }}" title="Retour myCLAP"><i class="fas fa-globe"></i></a>
+                </div>
+
+                <div class="icon">
+                    <a href="{{ route_url('user-login') }}" title="Se connecter"><i class="fas fa-sign-in"></i></a>
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="layout" id="main-layout">
+        <script>
+            // Set the leftbar mode
+            if (window.innerWidth >= 800) {
+                document.getElementById('main-layout').setAttribute('data-leftbar', localStorage.getItem('leftbar') || 'full');
+            } else {
+                document.getElementById('main-layout').setAttribute('data-leftbar', 'mini');
+            }
+        </script>
+
+        <div class="leftbar overlay">
+            <ul class="menu">
+                <li {% if LeftbarActive == 'dashboard' %} class="active"{% endif %}>
+                    <a href="{{ route_url('manager-index') }}" title="Accueil">
+                        <span class="icon"><i class="fas fa-tachometer-alt-fast"></i></span>
+                        <span class="menu-label">Dashboard</span>
+                    </a>
+                </li>
+
+                {% if __UserModule.hasPermissionGroup('manager.video') %}
+                <li {% if LeftbarActive == 'videos' %} class="active"{% endif %}>
+                    <a href="{{ route_url('manager-video-index') }}" title="Vidéos">
+                        <span class="icon"><i class="fas fa-file-video"></i></span>
+                        <span class="menu-label">Vidéos</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if __UserModule.hasPermission('manager.playlist') %}
+                <li {% if LeftbarActive == 'playlists' %} class="active"{% endif %}>
+                    <a href="{{ route_url('manager-playlist-index') }}" title="Playlists">
+                        <span class="icon"><i class="fas fa-list"></i></span>
+                        <span class="menu-label">Playlists</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if __UserModule.hasPermission('manager.category') %}
+                <li {% if LeftbarActive == 'categories' %} class="active"{% endif %}>
+                    <a href="{{ route_url('manager-category-index') }}" title="Catégories">
+                        <span class="icon"><i class="fas fa-album-collection"></i></span>
+                        <span class="menu-label">Catégories</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if __UserModule.hasPermission('manager.design') %}
+                <li {% if LeftbarActive == 'design' %} class="active"{% endif %}>
+                    <a href="{{ route_url('manager-design-index') }}" title="Présentation">
+                        <span class="icon"><i class="fas fa-ruler-combined"></i></span>
+                        <span class="menu-label">Présentation</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if __UserModule.hasPermission('manager.stat') %}
+                <li {% if LeftbarActive == 'stats' %} class="active"{% endif %}>
+                    <a href="{{ route_url('manager-stat-index') }}" title="Statistiques">
+                        <span class="icon"><i class="far fa-chart-line"></i></span>
+                        <span class="menu-label">Statistiques</span>
+                    </a>
+                </li>
+                {% endif %}
+
+
+
+            </ul>
+
+
+        </div>
+
+        <div class="wrapper">
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="{{ asset_url('myclap:myclap_manager.js') }}"></script>
+{% endblock %}

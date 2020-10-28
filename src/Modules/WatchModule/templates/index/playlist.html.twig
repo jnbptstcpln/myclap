@@ -1,0 +1,169 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}{{ video.name }}{% endblock %}
+
+{% block meta %}
+    <meta property="og:image" content="{{ route_url('watch-media-thumbnail', video.token, 1080) }}" />
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/static/plyr/plyr.css">
+    <style>
+        /** ----- PLYR ----- */
+        .plyr--full-ui input[type=range] {
+            color: red !important;
+        }
+        .plyr__control--overlaid {
+            background: rgba(255, 5, 2, 0.8) !important;
+        }
+        .plyr--video .plyr__control.plyr__tab-focus, .plyr--video .plyr__control:hover, .plyr--video .plyr__control[aria-expanded=true] {
+            background: red !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="video-container">
+        <video poster="{{ route_url('watch-media-thumbnail', video.token, 1080) }}" id="player" playsinline controls>
+            <source src="{{ route_url('watch-media-video', video.token) }}" />
+        </video>
+        <div class="info">
+            <div class="layout">
+                <div>
+                    <h1><small class="text-muted" style="margin-right: 10px">#{{ video.index }}</small> {{ video.name }}</h1>
+                    <h2>{{ video.views }} vue{% if video.views > 1 %}s{% endif %} {{ " • " }} {{ video.created_on|date_label }}</h2>
+                </div>
+                <div class="action">
+                    <div>
+                        {% if __UserModule.isConnected() %}
+                        <a class="button reaction {% if video.user_did_like %} active{% endif %}" title="Ajouter à mes favoris">
+                            <span class="empty"><i class="far fa-heart"></i></span>
+                            <span class="full"><i class="fas fa-heart"></i></span>
+                            <span class="button-label">{{ video.reactions }}</span>
+                        </a>
+                        {% else %}
+                        <a class="button reaction active disabled">
+                            <span class="empty"><i class="far fa-heart"></i></span>
+                            <span class="full"><i class="fas fa-heart"></i></span>
+                            <span class="button-label">{{ video.reactions }}</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            {#
+            {% set categories = video.categories|json_decode %}
+            {% if categories|length > 0 %}
+            <div>
+                {% for category in categories %}
+                    <a class="label" href="#">{{ category }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            #}
+
+            <p class="min-h-50">
+                {{ video.description|nl2br }}
+            </p>
+        </div>
+
+        {% set current_index = video.index %}
+        {% set next_videos = playlist._videos|slice(current_index) %}
+        {% if next_videos|length > 0 %}
+            <h3>A suivre...</h3>
+            <div class="row">
+                {% for video in next_videos %}
+                    <div class="video">
+                        <a href="{{ route_url('watch-playlist', playlist.slug, video.token) }}">
+                            <div class="thumbnail" style="background-image: url('{{ route_url('watch-media-thumbnail', video.token, 360) }}')">
+                                <div>
+                                    <span class="fa-stack">
+                                        <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                                        <i class="fas fa-play-circle fa-stack-1x"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <h3><small class="text-muted" style="margin-right: 5px">#{{ video.index }}</small> {{ video.name }}</h3>
+                                <p>{{ video.views|views_label ~ " • " ~ video.created_on|since_label }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="p-20 max-w-750 ms-auto">
+            <a class="button block" href="{{ route_url('home-playlist-details', playlist.slug) }}"><i class="far fa-list"></i> Revenir à la playlist</a>
+        </div>
+
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="/static/plyr/plyr.min.js"></script>
+    <script>
+        var playback_session_id = null;
+        Player = new Plyr('#player', {
+            fullscreen:{iosNative:true}
+        });
+        Player.on('playing', function(event) {
+            if (!playback_session_id) {
+                $.api.post(
+                    '{{ route_url('watch-statapi-init', video.token) }}',
+                    {},
+                    function(response) {
+                        if (response.success) {
+                            playback_session_id = response.payload.playback_sid;
+                        }
+                    }
+                )
+            }
+        });
+        setInterval(function() {
+            if (playback_session_id && Player.playing) {
+                $.api.post(
+                    '{{ route_url('watch-statapi-update', video.token) }}',
+                    {playback_sid: playback_session_id},
+                    function(response) {
+                        if (response.success) {
+                            playback_session_id = response.payload.playback_sid;
+                        } else {
+                            playback_session_id = null;
+                        }
+                    }
+                )
+            }
+        }, 5000);
+        {% if __UserModule.isConnected() %}
+            $('.button.reaction').on('click', function(event) {
+                event.preventDefault();
+                Button = event.element;
+                $.api.post(
+                    '{{ route_url('watch-reactionapi-toggle', video.token) }}',
+                    {},
+                    function(response) {
+                        if (response.success) {
+                            if (response.payload.active) {
+                                Button.addClass('active');
+                                ButtonLabel = Button.find('.button-label');
+                                ButtonLabel.text(parseInt(ButtonLabel.text()) + 1);
+                            } else {
+                                Button.removeClass('active');
+                                ButtonLabel = Button.find('.button-label');
+                                ButtonLabel.text(Math.max(parseInt(ButtonLabel.text()) - 1, 0));
+                            }
+                        } else {
+                            alert(response.message)
+                        }
+                    }
+                )
+            });
+        {% endif %}
+    </script>
+{% endblock %}

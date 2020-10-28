@@ -1,0 +1,42 @@
+
+watch-index:
+  method: 'GET'
+  path: '/regarder/[*:token]'
+  action: 'WatchModule:Index:index'
+watch-download:
+  method: 'GET'
+  path: '/download/[*:token]'
+  action: 'WatchModule:Index:download'
+
+watch-playlist:
+  method: 'GET'
+  path: '/playlists/[*:slug]/[*:token]'
+  action: 'WatchModule:Index:playlist'
+
+watch-media-video:
+  method: 'GET'
+  path: '/media/[*:token]'
+  action: 'WatchModule:Media:video'
+watch-media-video-download:
+  method: 'GET'
+  path: '/media/[*:token]/download'
+  action: 'WatchModule:Media:video_download'
+watch-media-thumbnail:
+  method: 'GET'
+  path: '/media/[*:token]/thumbnail/[i:size]'
+  action: 'WatchModule:Media:thumbnail'
+
+
+watch-statapi-init:
+  method: 'POST'
+  path: '/statapi/[*:token]/init'
+  action: 'WatchModule:StatAPI:init'
+watch-statapi-update:
+  method: 'POST'
+  path: '/statapi/[*:token]/update'
+  action: 'WatchModule:StatAPI:update'
+
+watch-reactionapi-toggle:
+  method: 'POST'
+  path: '/reactionapi/[*:token]'
+  action: 'WatchModule:ReactionAPI:toggle'

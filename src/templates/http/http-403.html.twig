@@ -1,0 +1,33 @@
+{% extends '/base.html.twig' %}
+
+{% block page_title %}myCLAP - Accès interdit{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset_url('myclap:darker.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('myclap:gradient.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('myclap:layout.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('myclap:myclap.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('myclap:mobile.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="fullwidth h-100vh layout center">
+        <div class="fullwidth p-20">
+            <div class="br-5 overlay fullwidth max-w-300 ms-auto text-center p-20">
+                <p class="mt-0">
+                    <i class="fad fa-lock-alt fa-7x"></i>
+                </p>
+                <p style="font-size: 1.2em">Vous n'avez pas le droit d'accéder à cette page</p>
+                <a class="button red" href="{{ route_url('home-index') }}">Retourner à l'accueil</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="{{ asset_url('myclap:myclap.js') }}"></script>
+
+{% endblock %}

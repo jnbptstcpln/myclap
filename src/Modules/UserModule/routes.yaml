@@ -1,0 +1,14 @@
+
+user-login:
+  method: 'GET'
+  path: '/connexion'
+  action: 'UserModule:UserSession:login'
+user-login-cla:
+  method: 'GET'
+  path: '/connexion/cla'
+  action: 'UserModule:UserSession:handleTicket'
+
+user-logout:
+  method: 'GET'
+  path: '/deconnexion'
+  action: 'UserModule:UserSession:logout'

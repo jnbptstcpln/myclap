@@ -1,0 +1,52 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}
+    myCLAP - Playlists
+{% endblock %}
+
+{% block content %}
+
+    {% if broadcastPlaylists|length > 0 %}
+
+        <div class="section-header">
+            <div>
+                <h2>Dernières diffusions</h2>
+            </div>
+            {#<div class="link">
+                <a class="button"><i class="fas fa-list"></i> Tout voir...</a>
+            </div>#}
+        </div>
+
+        <div class="fulgur-load_more" data-url="{{ route_url('listapi-playlistbroadcast-playlist') }}">
+            <div class="row playlist-broadcast-container">
+
+                {% for playlist in broadcastPlaylists %}
+                    {% include "@HomeModule/listapi/playlist_broadcast.html.twig" %}
+                {% endfor %}
+            </div>
+        </div>
+
+    {% endif %}
+
+
+    {% if classicPlaylists|length > 0 %}
+        <div class="section-header">
+            <div>
+                <h2>Sélections</h2>
+            </div>
+            {#<div class="link">
+                <a class="button"><i class="fas fa-list"></i> Tout voir...</a>
+            </div>#}
+        </div>
+
+        <div class="fulgur-load_more" data-url="{{ route_url('listapi-playlistclassic-playlist') }}">
+            <div class="row horizontal">
+                {% for playlist in classicPlaylists %}
+                    {% include "@HomeModule/listapi/playlist_classic.html.twig" %}
+                {% endfor %}
+        </div>
+    {% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,123 @@
+
+# Index
+manager-index:
+  method: 'GET'
+  path: '/manager'
+  action: 'ManagerModule:Dashboard:index'
+
+# Video
+manager-video-index:
+  method: 'GET'
+  path: '/manager/videos'
+  action: 'ManagerModule:Video:index'
+manager-video-create:
+  method: 'GET|POST'
+  path: '/manager/videos/ajouter'
+  action: 'ManagerModule:Video:create'
+manager-video-edit:
+  method: 'GET|POST'
+  path: '/manager/videos/v/[*:token]'
+  action: 'ManagerModule:Video:edit'
+manager-video-upload:
+  method: 'GET'
+  path: '/manager/videos/v/[*:token]/envoyer'
+  action: 'ManagerModule:Video:upload'
+manager-video-delete:
+  method: 'GET|POST'
+  path: '/manager/videos/v/[*:token]/supprimer'
+  action: 'ManagerModule:Video:delete'
+
+# VideoUploadApi
+manager-video-uploadapi-init:
+  method: 'POST'
+  path: '/manager/videos/v/[*:token]/envoyer/init'
+  action: 'ManagerModule:VideoUploadAPI:init'
+manager-video-uploadapi-process:
+  method: 'POST'
+  path: '/manager/videos/v/[*:token]/envoyer/process'
+  action: 'ManagerModule:VideoUploadAPI:process'
+manager-video-uploadapi-end:
+  method: 'POST'
+  path: '/manager/videos/v/[*:token]/envoyer/end'
+  action: 'ManagerModule:VideoUploadAPI:end'
+manager-video-uploadapi-reset:
+  method: 'POST'
+  path: '/manager/videos/v/[*:token]/envoyer/reset'
+  action: 'ManagerModule:VideoUploadAPI:reset'
+
+# Playlist
+manager-playlist-index:
+  method: 'GET'
+  path: '/manager/playlists'
+  action: 'ManagerModule:Playlist:index'
+manager-playlist-create:
+  method: 'GET|POST'
+  path: '/manager/playlists/ajouter'
+  action: 'ManagerModule:Playlist:create'
+manager-playlist-edit:
+  method: 'GET|POST'
+  path: '/manager/playlists/s/[*:slug]'
+  action: 'ManagerModule:Playlist:edit'
+manager-playlist-delete:
+  method: 'GET|POST'
+  path: '/manager/playlists/s/[*:slug]/supprimer'
+  action: 'ManagerModule:Playlist:delete'
+
+manager-playlistapi-search:
+  method: 'GET'
+  path: '/manager/playlists/api/search'
+  action: 'ManagerModule:PlaylistAPI:search_videos_html'
+manager-playlistapi-videos:
+  method: 'GET'
+  path: '/manager/playlists/api/videos'
+  action: 'ManagerModule:PlaylistAPI:videos_html'
+
+# Category
+manager-category-index:
+  method: 'GET'
+  path: '/manager/categories'
+  action: 'ManagerModule:Category:index'
+manager-category-create:
+  method: 'GET|POST'
+  path: '/manager/categories/nouvelle'
+  action: 'ManagerModule:Category:create'
+manager-category-edit:
+  method: 'GET|POST'
+  path: '/manager/categories/s/[*:slug]'
+  action: 'ManagerModule:Category:edit'
+manager-category-delete:
+  method: 'GET|POST'
+  path: '/manager/categories/s/[*:slug]/supprimer'
+  action: 'ManagerModule:Category:delete'
+manager-categoryapi-getcategories:
+  method: 'GET'
+  path: '/manager/categories/api/liste'
+  action: 'ManagerModule:CategoryAPI:get_categories'
+
+# Design
+manager-design-index:
+  method: 'GET'
+  path: '/manager/presentation'
+  action: 'ManagerModule:Design:index'
+manager-design-billboard-add:
+  method: 'GET|POST'
+  path: '/manager/presentation/annonces/nouveau'
+  action: 'ManagerModule:Design:billboard_add'
+manager-design-billboard-edit:
+  method: 'GET|POST'
+  path: '/manager/presentation/annonces/s/[*:identifier]'
+  action: 'ManagerModule:Design:billboard_edit'
+manager-design-billboard-delete:
+  method: 'GET|POST'
+  path: '/manager/presentation/annonces/s/[*:identifier]/supprimer'
+  action: 'ManagerModule:Design:billboard_delete'
+
+# Stat
+manager-stat-index:
+  method: 'GET'
+  path: '/manager/statistiques'
+  action: 'ManagerModule:Stat:index'
+manager-stat-video:
+  method: 'GET'
+  path: '/manager/statistiques/video/[*:token]'
+  action: 'ManagerModule:Stat:video'

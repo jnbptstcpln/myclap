@@ -1,0 +1,231 @@
+/**
+ * SLIDESHOW
+ */
+.fulgur-slideshow {
+    position: relative;
+}
+.fulgur-slideshow:not(.ready) > *:not(:first-child) {
+    display: none;
+}
+.fulgur-slideshow .slides-container {
+    position: relative;
+}
+.fulgur-slideshow .slides-container > * {
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 750ms ease-out;
+    width: 100%;
+}
+.fulgur-slideshow .slides-container > *.active {
+    opacity: 1.0;
+    transition: opacity 250ms ease-in;
+}
+.fulgur-slideshow .slides-container > *:not(.active) {
+}
+.fulgur-slideshow .indicators-container {
+    bottom: 3px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.fulgur-slideshow .indicators-container a {
+    background-color: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    height: 10px;
+    margin: 0 2px;
+    transition: background-color 150ms;
+    width: 10px;
+}
+.fulgur-slideshow .indicators-container a:hover, .fulgur-slideshow .indicators-container a.active {
+    background-color: rgba(255,255,255,0.5);
+}
+
+
+/**
+ * BUTTONS NAVIGATION
+ */
+.fulgur-buttons-navigation {
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
+.fulgur-buttons-navigation > .button {
+    border-radius: 0;
+    border-right-style: none;
+    margin: 0;
+}
+.fulgur-buttons-navigation > .button:first-child {
+    border-bottom-left-radius: 4px;
+    border-right: none;
+    border-top-left-radius: 4px;
+}
+.fulgur-buttons-navigation > .button:last-child {
+    border-bottom-right-radius: 4px;
+    border-right-style: solid;
+    border-top-right-radius: 4px;
+}
+.fulgur-buttons-navigation-container > div.panels {
+    display: none;
+    z-index: 1;
+}
+.fulgur-buttons-navigation-container > div.buttons-navigation {
+    position: relative;
+    top: 19px;
+    z-index: 1000;
+}
+@media (max-width: 768px) {
+    .fulgur-buttons-navigation > .button {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 7px;
+    }
+    .fulgur-buttons-navigation-container > div.buttons-navigation {
+        position: relative;
+        top: 15px;
+    }
+}
+
+
+/**
+ * SEARCH ITEM
+ */
+.fulgur-search_item > div:first-child {
+    margin: auto;
+    max-width: 500px;
+}
+.fulgur-search_item > div:first-child input {
+    width: 100%;
+}
+.fulgur-search_item > .grid {
+    margin-top: 15px;
+}
+.fulgur-search_item > .grid {
+
+}
+.fulgur-search_item > .grid > a.item {
+    text-decoration: none;
+}
+
+div.fulgur-autocomplete {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    --option-height: 25px;
+}
+div.fulgur-autocomplete > input {
+    width: 100%;
+}
+div.fulgur-autocomplete.open > input {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: border-bottom-left-radius 300ms ease-out, border-bottom-right-radius 300ms ease-out;
+}
+
+
+/**
+ * AUTOCOMPLETE
+ */
+div.fulgur-autocomplete > ul {
+    list-style: none;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    transition: max-height 150ms ease-out;
+    width: 100%;
+}
+div.fulgur-autocomplete.open > ul {
+    background-color: #292929;
+    border-bottom: 1px solid #9b0000;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left: 1px solid #9b0000;;
+    border-right: 1px solid #9b0000;;
+    --nb-options: 0;
+    max-height: min(calc(var(--nb-options) * var(--option-height)), calc(9.5 * var(--option-height)));
+    overflow-y: scroll;
+    transition: max-height 10ms ease-out;
+    z-index: 100;
+}
+div.fulgur-autocomplete > ul > li {
+    cursor: pointer;
+    font-size: 0.9em;
+    height: var(--option-height);
+    margin-bottom: 0;
+    padding: 3px 10px;
+    transition: background-color 150ms;
+    white-space: nowrap;
+}
+div.fulgur-autocomplete > ul > li.active {
+    background-color: #494949;
+    color: white;
+    transition: background-color 150ms;
+}
+
+
+/**
+ * FILEINPUT
+ */
+div.fulgur-fileinput {
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    width: 100%;
+    min-height: 100px;
+    background-color: rgba(255,255,255, 0.07);
+}
+div.fulgur-fileinput:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+div.fulgur-fileinput > input {
+}
+div.fulgur-fileinput > div {
+    text-align: center;
+}
+div.fulgur-fileinput > div > h6 {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+}
+div.fulgur-fileinput > div > p {
+    margin-bottom: 4px;
+    margin-top: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+div.fulgur-fileinput > div > .button:last-child {
+    margin-bottom: 0;
+}
+
+
+/**
+ * KEYWORDS INPUT
+ */
+span.fulgur-keywords_input-container {
+    margin-right: 10px;
+}
+
+/**
+ * LOAD MORE
+ */
+.fulgur-load_more > .load-more > a {
+    color: #97979c;
+    display: block;
+    font-size: 1.25em;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 150ms, color 150ms;
+    width: 100%;
+}
+.fulgur-load_more > .load-more > a:hover {
+    color: white;
+    background-color: rgba(255,255,255,0.05);
+}

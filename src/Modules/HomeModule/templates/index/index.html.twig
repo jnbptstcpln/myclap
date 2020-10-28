@@ -1,0 +1,91 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}
+    myCLAP - Accueil
+{% endblock %}
+
+{% block content %}
+
+    {% if billboard %}
+
+        <div class="fulgur-slideshow">
+            {% for ad in billboard %}
+                <div class="{{ 'jumbotron ' ~ ad.color }}">
+                    <div>
+                        <h1>{{ ad.title }}</h1>
+                        <a class="button" href="{{ ad.url }}">{% if ad.icon %}<i style="margin-right: 5px" class="{{ 'fas ' ~ ad.icon }}"></i>{% endif %} {{ ad.button }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            {#
+            <div class="jumbotron gradient-dark-red">
+                <div>
+                    <h1>ZAP du 11/04/2020</h1>
+                    <a class="button" href="https://my.le-clap.fr/regarder/aX3EUX"><i class="fas fa-popcorn"></i> Revoir l'émission</a>
+                </div>
+            </div>
+
+            <div class="jumbotron gradient-calm-darya">
+                <div>
+                    <h1>Centrale Radio</h1>
+                    <a class="button" href="https://my.le-clap.fr/playlists/centrale-radio"><i class="fas fa-play-circle"></i> Accéder à la playlist</a>
+                </div>
+            </div>
+
+            {#
+            <div class="jumbotron gradient-mirage">
+                <div>
+                    <h1>Recettes pompettes en B211</h1>
+                    <a class="button"><i class="fas fa-utensils-alt"></i> (Re)découvrir cette soirée</a>
+                </div>
+            </div>
+            #}
+        </div>
+
+    {% endif %}
+
+    <h2>Nouveautés</h2>
+
+    <div class="fulgur-load_more" data-url="{{ route_url('listapi-recent-video') }}" data-max="36">
+        <div class="row">
+            {% for video in recent_videos %}
+                {% include '@HomeModule/listapi/video.html.twig' %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {#
+    <hr>
+
+    <h2>Le meilleur du CLAP</h2>
+
+    <div class="fulgur-load_more" data-url="">
+        <div class="row">
+
+            {% for i in [1,2,3] %}
+
+                <div class="video">
+                    <a href="{{ route_url('watch-index', 'test') }}">
+                        <div class="thumbnail" style="background-image: url('/static/myclap/thumbnail/placeholder.png')">
+                            <div>
+                                <span class="fa-stack">
+                                    <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                                    <i class="fas fa-play-circle fa-stack-1x"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h3>Recettes pompettes en B211</h3>
+                            <p>365 vues • Il y a 1 an</p>
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+    #}
+
+{% endblock %}

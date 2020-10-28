@@ -1,0 +1,56 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}
+    myCLAP - Catégories
+{% endblock %}
+
+{% block content %}
+
+    {% for category in categories %}
+
+        {% if category.number_of_videos > 0 %}
+
+            <div class="section-header">
+                <div>
+                    <h2>{{ category.label }}</h2>
+                    <h3>{{ category.number_of_videos }} vidéo{% if category.number_of_videos > 1 %}s{% endif %}</h3>
+                </div>
+                <div class="link">
+                    <a class="button" href="{{ route_url('home-category-details', category.slug) }}"><i class="fas fa-list"></i> Tout voir...</a>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {% for video in category.videos %}
+
+                    <div class="video">
+                        <a href="{{ route_url('watch-index', video.token) }}">
+                            <div class="thumbnail fulgur-background_loading" data-url="{{ route_url('watch-media-thumbnail', video.token, 360) }}">
+                                <div>
+                                    <span class="fa-stack">
+                                        <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                                        <i class="fas fa-play-circle fa-stack-1x"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <h3>{{ video.name }}</h3>
+                                <p>{{ video.views|views_label ~ " • " ~ video.created_on|since_label }}</p>
+                            </div>
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% if not loop.last %}
+                <hr>
+            {% endif %}
+
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}

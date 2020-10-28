@@ -1,0 +1,21 @@
+{% spaceless %}
+    <div class="video" data-token="{{ video.token }}">
+        <div>
+            <div>
+                <div class="thumbnail fulgur-background_loading" data-url="{{ route_url('watch-media-thumbnail', video.token, 360) }}">
+                    <div></div>
+                </div>
+            </div>
+            <div class="info">
+                <h2>{{ video.name }}</h2>
+                <p>{{ video.views|views_label ~ " • " ~ video.created_on|since_label }}</p>
+
+                <div class="mt-5 max-w-250 ms-auto text-center buttons-group">
+                    <a class="button" data-position="start"><i class="far fa-chevron-up"></i> Ajouter au début</a>
+                    <a class="button" data-position="end"><i class="far fa-chevron-down"></i> Ajouter à la fin</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endspaceless %}

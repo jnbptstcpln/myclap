@@ -1,0 +1,58 @@
+{% extends '/layout_manager.html.twig' %}
+
+{% block page_title %}
+    myCLAP Manager - Nouvelle annonce
+{% endblock %}
+
+{% block content %}
+
+    <h2>Ajouter une annonce</h2>
+
+    <div class="overlay p-20 max-w-1000 ms-auto br-5">
+        <form method="{{ form.method }}" action="{{ form.action }}" enctype="{{ form.enctype }}" class="mb-0">
+
+            {{ form.csrf_token|render }}
+
+            {% if form.errors|length > 0 %}
+                <div class="p-10">
+                    <div class="alert alert-error">
+                        {% if form.errors|length > 1 %}
+                            <ul>
+                                {% for error in form.errors %}
+                                    <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>{{ form.errors.get(0).message }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="field">
+                {{ form.title|render }}
+            </div>
+            <div class="field">
+                {{ form.button|render }}
+            </div>
+            <div class="field">
+                {{ form.url|render }}
+            </div>
+            <div class="field">
+                {{ form.color|render }}
+            </div>
+            <div class="field">
+                {{ form.icon|render }}
+            </div>
+
+            <hr class="mt-25 mb-15">
+
+            <div class="text-right">
+                <a class="button" href="{{ route_url('manager-design-index') }}">Annuler</a>
+                <button class="button red" type="submit">Ajouter l'annonce</button>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}
+    myCLAP - 2018/2019
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center no-border">
+        <div>
+            <h2>Année</h2>
+            <h1>2018 <span class="text-red">/</span> 2019</h1>
+        </div>
+    </div>
+
+    <div class="fulgur-load_more" data-url="">
+        <div class="row">
+            {% for i in [1,2,3,4,5,6,7,8] %}
+                <div class="video">
+                    <a href="{{ route_url('watch-index', 'test') }}">
+                        <div class="thumbnail" style="background-image: url('/static/myclap/thumbnail/placeholder.png')">
+                            <div>
+                                <span class="fa-stack">
+                                    <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                                    <i class="fas fa-play-circle fa-stack-1x"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h3>Recettes pompettes en B211</h3>
+                            <p>365 vues • Il y a 1 an</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

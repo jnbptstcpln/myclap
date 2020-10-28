@@ -1,0 +1,121 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}
+    myCLAP - Années
+{% endblock %}
+
+{% block content %}
+
+    <div class="section-header">
+        <div>
+            <h2>2019 <span class="text-red">/</span> 2020</h2>
+            <h3>14 vidéos</h3>
+        </div>
+        <div class="link">
+            <a class="button" href="{{ route_url('home-year-details', 'test') }}" href="{{ route_url('home-year-details', 'test') }}"><i class="fas fa-list"></i> Tout voir...</a>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        {% for i in [1,2,3,4] %}
+
+            <div class="video">
+                <a href="{{ route_url('watch-index', 'test') }}">
+                    <div class="thumbnail" style="background-image: url('/static/myclap/thumbnail/placeholder.png')">
+                        <div>
+                            <span class="fa-stack">
+                                <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                                <i class="fas fa-play-circle fa-stack-1x"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h3>Recettes pompettes en B211</h3>
+                        <p>365 vues • Il y a 1 an</p>
+                    </div>
+                </a>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <hr>
+
+    <div class="section-header">
+        <div>
+            <h2>2018 <span class="text-red">/</span> 2019</h2>
+            <h3>34 vidéos</h3>
+        </div>
+        <div class="link">
+            <a class="button" href="{{ route_url('home-year-details', 'test') }}"><i class="fas fa-list"></i> Tout voir...</a>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        {% for i in [1,2,3,4] %}
+
+            <div class="video">
+                <a href="{{ route_url('watch-index', 'test') }}">
+                    <div class="thumbnail" style="background-image: url('/static/myclap/thumbnail/placeholder.png')">
+                        <div>
+                            <span class="fa-stack">
+                                <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                                <i class="fas fa-play-circle fa-stack-1x"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h3>Recettes pompettes en B211</h3>
+                        <p>365 vues • Il y a 1 an</p>
+                    </div>
+                </a>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <hr>
+
+    <div class="section-header">
+        <div>
+            <h2>2017 <span class="text-red">/</span> 2018</h2>
+            <h3>25 vidéos</h3>
+        </div>
+        <div class="link">
+            <a class="button" href="{{ route_url('home-year-details', 'test') }}"><i class="fas fa-list"></i> Tout voir...</a>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        {% for i in [1,2,3,4] %}
+
+            <div class="video">
+                <a href="{{ route_url('watch-index', 'test') }}">
+                    <div class="thumbnail" style="background-image: url('/static/myclap/thumbnail/placeholder.png')">
+                        <div>
+                            <span class="fa-stack">
+                                <i class="fas fa-circle fa-stack-1x" style="color: whitesmoke"></i>
+                                <i class="fas fa-play-circle fa-stack-1x"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <h3>Recettes pompettes en B211</h3>
+                        <p>365 vues • Il y a 1 an</p>
+                    </div>
+                </a>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

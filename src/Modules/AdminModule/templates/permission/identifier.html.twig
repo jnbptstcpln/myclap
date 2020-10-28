@@ -1,0 +1,83 @@
+{% extends '/layout_admin.html.twig' %}
+
+{% block page_title %}
+    myCLAP Administration - Permissions
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center no-border">
+        <div>
+            <h2>Permission</h2>
+            <h1>{{ permission.identifier }}</h1>
+            <p>{{ permission.description }}</p>
+        </div>
+    </div>
+
+    <div class="overlay p-10 max-w-1000 ms-auto br-5">
+
+        <div class="max-w-500 ms-auto mb-15">
+            <input type="search" class="fulgur-search_table fullwidth" data-table-id="permissions-table" placeholder="Rechercher un utilisateur">
+        </div>
+
+        <table class="fullwidth" id="permissions-table">
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Ajoutée le</th>
+                    <th>par</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for _permission in permissions %}
+                    <tr>
+                        <td>{{ _permission.username }}</td>
+                        <td>{{ _permission.created_on|date('d/m/Y') }}</td>
+                        <td>{{ _permission.created_by }}</td>
+                        <td>
+                            <a class="button remove-user" href="#" data-username="{{ _permission.username }}">Retirer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="layout max-w-500 ms-auto mt-20">
+            <div class="flex-auto ms-5">
+                <input id="username" type="text" class="fulgur-autocomplete" placeholder="Ajouter un utilisateur" data-url="{{ route_url('admin-permissionapi-searchuser2') }}" data-loading-mode="fetch">
+            </div>
+            <a class="button add-user" href="#">Ajouter</a>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script>
+        $('.add-user').on('click', function(e) {
+            var username = $('#username').get('value');
+            $.api.post('{{ route_url('admin-permissionapi-add') }}', {identifier: '{{ permission.identifier }}', username: username}, function(response) {
+                console.log(response);
+                if (response.success) {
+                    $('#permissions-table tbody').append('<tr><td>{username}</td><td>{created_on}</td><td>{created_by}</td><td><a class="button remove-user" href="#" data-username="{username}">Retirer</a></td></tr>'.format(response.payload));
+                    $('#username').set('value', '');
+                } else {
+                    alert(response.message);
+                }
+            })
+        });
+        $('#permissions-table').on('click', '.remove-user', function(e) {
+            var username = e.element.attr('data-username');
+            $.api.post('{{ route_url('admin-permissionapi-remove') }}', {identifier: '{{ permission.identifier }}', username: username}, function(response) {
+                if (response.success) {
+                    e.element.parent('tr').remove();
+                } else {
+                    alert(response.message);
+                }
+            })
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}
+    myCLAP - {{ " " ~ playlist.name }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center">
+        <div>
+            <h2>Playlist</h2>
+            <h1>{{ playlist.name }}</h1>
+            {% if playlist.description %}
+            <p class="mb-20">
+                {{ playlist.description|nl2br }}
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row horizontal">
+        {% for video in playlist._videos %}
+            {% include "@HomeModule/playlist/video.html.twig" %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

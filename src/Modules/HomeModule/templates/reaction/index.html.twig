@@ -1,0 +1,24 @@
+{% extends '/layout.html.twig' %}
+
+{% block page_title %}
+    myCLAP - Mes favoris
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center">
+        <div>
+            <h1>Mes favoris</h1>
+        </div>
+    </div>
+
+    <div class="fulgur-load_more" data-url="{{ route_url('listapi-userfavorite-videos') }}" data-max="{{ number_of_videos }}">
+        <div class="row horizontal">
+            {% for video in videos %}
+                {% include "@HomeModule/reaction/video.html.twig" %}
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

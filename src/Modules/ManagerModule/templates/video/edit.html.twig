@@ -1,0 +1,86 @@
+{% extends '/layout_manager.html.twig' %}
+
+{% block page_title %}
+    myCLAP Manager - Modifier "{{ video.name }}"
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center no-border">
+        <div>
+            <h2>{{ video.name }}</h2>
+            <h1>Modifier</h1>
+        </div>
+    </div>
+
+    <div class="overlay p-20 max-w-1000 ms-auto br-5">
+
+        {% if video.upload_status != 0 %}
+            <div class="mb-15">
+                <div class="alert alert-warning">
+                    <p>
+                        Aucun fichier vidéo n'a été envoyé pour le moment...<br>
+                        Rendez-vous sur
+                        <a href="{{ route_url('manager-video-upload', video.token) }}">la page de mise en ligne</a>
+                        pour y téléverser le fichier associé à cette vidéo.
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+
+        <form method="{{ form.method }}" action="{{ form.action }}" enctype="{{ form.enctype }}" class="mb-0">
+
+            <div class="mb-25">
+                {% include '/flash/success.html.twig' %}
+            </div>
+
+            {{ form.csrf_token|render }}
+
+            {% if form.errors|length > 0 %}
+                <div class="p-10">
+                    <div class="alert alert-error">
+                        {% if form.errors|length > 1 %}
+                            <ul>
+                                {% for error in form.errors %}
+                                    <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>{{ form.errors.get(0).message }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="field">
+                {{ form.name|render }}
+            </div>
+            <div class="field">
+                {{ form.created_on|render }}
+            </div>
+            <div class="mb-10">
+                {{ form.thumbnail_identifier|render }}
+                <div class="field">
+                    {{ form.thumbnail_file|render }}
+                </div>
+            </div>
+            <div class="field">
+                {{ form.description|render }}
+            </div>
+            <div class="field">
+                {{ form.categories|render }}
+            </div>
+            <div class="field">
+                {{ form.access|render }}
+            </div>
+
+            <hr class="mt-25 mb-15">
+
+            <div class="text-right">
+                <a class="button" href="{{ route_url('manager-video-delete', video.token) }}">Supprimer</a>
+                <a class="button" href="{{ route_url('watch-index', video.token) }}"><i class="fas fa-play"></i> Regarder</a>
+                <button class="button red" type="submit">Sauvegarder</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

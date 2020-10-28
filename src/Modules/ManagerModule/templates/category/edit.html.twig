@@ -1,0 +1,55 @@
+{% extends '/layout_manager.html.twig' %}
+
+{% block page_title %}
+    myCLAP Manager - Modifier "{{ category.label }}"
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center no-border">
+        <div>
+            <h2>{{ category.label }}</h2>
+            <h1>Modifier</h1>
+        </div>
+    </div>
+
+    <div class="overlay p-20 max-w-1000 ms-auto br-5">
+        <form method="{{ form.method }}" action="{{ form.action }}" enctype="{{ form.enctype }}" class="mb-0">
+
+            {{ form.csrf_token|render }}
+
+            <div class="mb-25">
+                {% include '/flash/success.html.twig' %}
+            </div>
+
+            {% if form.errors|length > 0 %}
+                <div class="p-10">
+                    <div class="alert alert-error">
+                        {% if form.errors|length > 1 %}
+                            <ul>
+                                {% for error in form.errors %}
+                                    <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>{{ form.errors.get(0).message }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="field">
+                {{ form.label|render }}
+            </div>
+            <div class="field">
+                {{ form.description|render }}
+            </div>
+
+            <hr class="mt-25 mb-15">
+
+            <div class="text-right">
+                <button class="button red" type="submit">Sauvegarder</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

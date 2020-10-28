@@ -1,0 +1,25 @@
+{% spaceless %}
+    <div class="playlist">
+        <div class="layout">
+            <span class="icon"><i class="far fa-film"></i></span>
+            <a href="{{ route_url('home-playlist-details', playlist.slug) }}">
+                <h2>{{ playlist.name }}</h2>
+                <h3>{{ playlist.number_of_videos }} vidéo{% if playlist.number_of_videos > 1 %}s{% endif %}</h3>
+            </a>
+        </div>
+
+        <div class="row">
+            {% for video in playlist.videos %}
+
+                <div class="video">
+                    <a>
+                        <div class="thumbnail fulgur-background_loading" data-url="{{ route_url('watch-media-thumbnail', video.token, 144) }}">
+                            <div></div>
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endspaceless %}

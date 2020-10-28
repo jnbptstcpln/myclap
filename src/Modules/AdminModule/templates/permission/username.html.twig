@@ -1,0 +1,105 @@
+{% extends '/layout_admin.html.twig' %}
+
+{% block page_title %}
+    myCLAP Administration - Permissions
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-center no-border">
+        <div>
+            <h2>Permission</h2>
+            <h1>{{ user.first_name ~ " " ~ user.last_name }}</h1>
+        </div>
+    </div>
+
+    <div class="overlay p-10 max-w-1000 ms-auto br-5">
+
+        <div class="max-w-500 ms-auto mb-15">
+            <input type="search" class="fulgur-search_table fullwidth" data-table-id="permissions-table" placeholder="Rechercher une permission">
+        </div>
+
+        <style>
+            tr.add {
+                color: rgba(255,255,255,0.25);
+            }
+            tr.remove a.button {
+                border-color: #a40000;
+            }
+        </style>
+
+        <table class="fullwidth" id="permissions-table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for permission in __PERMISSIONS %}
+                <tr class="{% if userPermissions[permission.identifier] %}remove{% else %}add{% endif %}">
+                    <td>
+                        <a class="button" href="#" data-identifier="{{ permission.identifier }}">
+                            {% if userPermissions[permission.identifier] %}
+                                Retirer
+                            {% else %}
+                                Donner
+                            {% endif %}
+                        </a>
+                    </td>
+                    <td>{{ permission.identifier }}</td>
+                    <td>{{ permission.description }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script>
+        $('#permissions-table').on('click', 'tr.add a.button', function(e) {
+            var identifier = e.element.attr('data-identifier');
+            Button = e.element;
+            Button.width(Button.width());
+            Button.html('<i class="fas fa-spinner fa-spin"></i>');
+
+            $.api.post('{{ route_url('admin-permissionapi-add') }}', {identifier: identifier, username: '{{ user.username }}'}, function(response) {
+                console.log(response);
+                if (response.success) {
+                    Tr = Button.parent('tr');
+                    Tr
+                        .removeClass('add')
+                        .addClass('remove')
+                    ;
+                    Button.text('Retirer')
+                } else {
+                    alert(response.message);
+                }
+            })
+        });
+        $('#permissions-table').on('click', 'tr.remove a.button', function(e) {
+            var identifier = e.element.attr('data-identifier');
+            Button = e.element;
+            Button.width(Button.width());
+            Button.html('<i class="fas fa-spinner fa-spin"></i>');
+
+            $.api.post('{{ route_url('admin-permissionapi-remove') }}', {identifier: identifier, username: '{{ user.username }}'}, function(response) {
+                if (response.success) {
+                    Tr = Button.parent('tr');
+                    Tr
+                        .removeClass('remove')
+                        .addClass('add')
+                    ;
+                    Button.text('Donner')
+                } else {
+                    alert(response.message);
+                }
+            })
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,5 @@
+assetsmanager:
+  source: 'src/assets'
+
+filemanager:
+  folder: 'media'

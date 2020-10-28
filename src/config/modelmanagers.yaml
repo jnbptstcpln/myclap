@@ -1,0 +1,11 @@
+myclap:
+  - category
+  - playlist
+  - user
+  - user_permission
+  - user_stayconnected
+  - video
+  - video_reaction
+  - video_thumbnail
+  - video_upload
+  - video_view
