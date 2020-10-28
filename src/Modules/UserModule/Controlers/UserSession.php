@@ -99,7 +99,7 @@ class UserSession extends Controler {
                 $user->last_name = $response['payload']['lastName'];
                 $user->email_centrale = $response['payload']['emailSchool'];
                 $user->promo = $response['payload']['promo'];
-                $user->alumni = false; // $response['payload']['isAlum'];
+                $user->alumni = 0; // $response['payload']['isAlum'];
 
                 // Save that entity in our database
                 try {
