@@ -38,6 +38,9 @@
                 <div class="field">
                     {{ form.video|render }}
                 </div>
+                <div class="text-center" style="font-size: 0.75em">
+                    <a href="#" style="color: #c0c0c0" id="start-upload">Cliquez ici si la mise en ligne ne se lance pas automatiquement</a>
+                </div>
             </form>
         </div>
 
@@ -89,10 +92,19 @@
 
         var req;
 
-        $('#video').on('change', function(e) {
+        $('#video').on('change', function (e) {
+            e.preventDefault();
+            upload();
+        });
+        $('#start-upload').on('click', function (e) {
+            e.preventDefault();
+            upload();
+        })
 
+
+        function upload() {
             // Check the user submit only 1 file
-            var files = e.element.get('files');
+            var files = $('#video').get('files');
             if (files.length === 0) {
                 return;
             } else if (files.length > 1) {
@@ -186,8 +198,7 @@
                     ;
                 }
             });
-
-        });
+        }
 
     </script>
 {% endblock %}
