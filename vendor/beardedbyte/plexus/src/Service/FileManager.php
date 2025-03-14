@@ -54,7 +54,7 @@ class FileManager extends AbstractService {
     public function get($identifier) {
         $file_infos = $this->parseIdentifier($identifier);
         if (!file_exists($file_infos['file_path'])) {
-            throw new FileException(sprintf("Le fichier '%s:%s' n'existe pas", $identifier));
+            throw new FileException(sprintf("Le fichier '%s' n'existe pas", $identifier));
         }
         return $file_infos['file_path'];
     }

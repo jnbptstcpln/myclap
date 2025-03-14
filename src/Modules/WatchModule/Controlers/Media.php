@@ -207,6 +207,7 @@ class Media extends Controler {
 
         $response->setStatusCode(200);
         $response->header('X-Sendfile', $filepath);
+        $response->header('X-Accel-Redirect', $filepath);
         $response->header('Content-type', $mimetype);
         $response->header('Content-Disposition', ('inline') . '; filename="'.$filename.'"');
         // In order to let the browser put the thumbnail in its cache

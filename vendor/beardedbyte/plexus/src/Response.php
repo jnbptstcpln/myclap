@@ -307,6 +307,7 @@ class Response {
 
         $this->setStatusCode(200);
         $this->header('X-Sendfile', $filepath);
+        $this->header('X-Accel-Redirect', $filepath);
         $this->header('Content-type', $mimetype);
         $this->header('Content-Disposition', (($download) ? 'attachement' : 'inline') . '; filename="'.$filename.'"');
 

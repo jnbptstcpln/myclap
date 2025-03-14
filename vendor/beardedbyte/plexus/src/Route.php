@@ -221,7 +221,7 @@ class Route {
      */
     public function build_uri(...$params) {
         $params = new Collection($params);
-        if ($params->length() == 1 && get_class($params->get(0)) == Collection::class) {
+        if ($params->length() == 1 && is_object($params->get(0)) && get_class($params->get(0)) == Collection::class) {
             $params = $params->get(0);
         }
         $uri = "";

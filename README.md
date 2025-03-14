@@ -1,4 +1,4 @@
-# Site web du BDS
+# Site web de MyCLAP
 
 Développement réalisé par Jean-Baptiste Caplan entre fin décembre/début janvier 2020. 
 ([jnbptstcpln@gmail.com](mailto:jnbptstcpln@gmail.com))
@@ -9,7 +9,7 @@ Ce site permet à travers différentes sections de :
 - Publier des vidéos
 - Classer les vidéos par catégorie
 - Construire des playlists
-- Permettre aux centralies de s'authentifier avec leur compte CLA
+- Permettre aux centraliens de s'authentifier avec leur compte CLA
 - Définir la politique d'accès des vidéos et playlist
     - Publique : n'importe qui peut y accéder
     - Non répertoriée : seules les personnes disposant du lien peuvent y accéder
@@ -40,7 +40,7 @@ Fichier `config/environment.yaml` :
 env: dev
 
 # Défini le nom d'hôte à travers lequel les utilisateurs ont accès au site
-host: 'http://me.le-clap.fr'
+host: 'http://my.le-clap.fr'
 
 # Défini les paramètres du service d'authentification de CLA
 cla-auth-host: "https://centralelilleassos.fr"
